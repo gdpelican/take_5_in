@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700,400);
+
+.place-collection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.place {
+  position: relative;
+  margin: 15px;
+  display: inline-block;
+}
+
+.place .Card {
+  cursor: pointer;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  border-radius: 10px !important;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 175px;
+}
+
+.place .CardImage {
+  margin: 0 !important;
+}
+
+.place-overlay {
+  background: rgba(0,0,0,0.5);
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  border-radius: 10px;
+}
+
+.place-text {
+  color: white;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.place-name {
+  font-weight: bold;
+}
+
+.hidden { display: none; }

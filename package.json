@@ -31,15 +31,19 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
   },
+  "browserify": {
+    "transform": ["babelify"]
+  },
   "babel": {
+    "minified": true,
     "presets": [
       "es2015",
       "react"
     ]
   },
   "scripts": {
-    "app":     "browserify ./src/app.jsx -t babelify -o ./dist/js/app.js",
-    "admin":   "browserify ./src/admin.jsx -t babelify -o ./dist/js/admin.js",
+    "app":     "browserify ./src/app.jsx   > ./dist/js/app.js",
+    "admin":   "browserify ./src/admin.jsx > ./dist/js/admin.js",
     "watch":   "npm-watch",
     "test":    "echo \"Error: no test specified\" && exit 1"
   },

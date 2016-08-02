@@ -25,7 +25,7 @@ namespace :deploy do
 
   task :run_server do
     on roles(:app) do
-      within current_path dos
+      within current_path do
         execute :rackup, "config.ru -o take-five.in"
       end
     end

@@ -9,6 +9,7 @@ require "capistrano/deploy"
 require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/npm'
+require 'capistrano/nginx'
 
 namespace :deploy do
   desc 'Build clientside app'
@@ -24,8 +25,8 @@ namespace :deploy do
 
   task :run_server do
     on roles(:app) do
-      within current_path do
-        execute :rackup, "config.ru -o take-five.in -p 80"
+      within current_path dos
+        execute :rackup, "config.ru -o take-five.in"
       end
     end
   end

@@ -7,7 +7,7 @@ gem 'datamapper'
 gem 'dm-postgres-adapter'
 gem 'dm-paperclip'
 gem 'json'
-gem 'dotenv'
+gem 'dotenv', git: 'https://github.com/bkeepers/dotenv.git' # ??
 
 group :development, :test do
   gem 'byebug'

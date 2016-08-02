@@ -18,5 +18,4 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-npm'
   gem 'capistrano-bundler'
-  gem 'capistrano3-nginx'
 end

@@ -15,6 +15,7 @@ namespace :deploy do
   task :build_clientside_app do
     on roles(:app) do
       within current_path do
+        execute :mkdir, '-p dist/js'
         execute :npm, "run app"
         execute :npm, "run admin"
       end

@@ -36,6 +36,6 @@ class Place
   end
 end
 
-DataMapper.setup(:default, ENV.fetch('DATABASE_URL', 'postgres://localhost/take_5_in_development')
+DataMapper.setup(:default, ENV.fetch('DATABASE_URL', 'postgres://localhost/take_5_in_development'))
 DataMapper.finalize
 DataMapper.auto_upgrade!

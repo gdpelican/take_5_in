@@ -22,4 +22,4 @@ namespace :deploy do
     end
   end
 end
-after "deploy:updated", "build_clientside_app"
+after "deploy:published", "build_clientside_app"

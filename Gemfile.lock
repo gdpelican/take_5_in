@@ -29,6 +29,8 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano3-nginx (2.1.5)
+      capistrano (>= 3.0.0)
     cuba (3.8.0)
       rack (>= 1.6.0)
     data_objects (0.10.17)
@@ -111,6 +113,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-npm
   capistrano-rvm
+  capistrano3-nginx
   cuba
   datamapper
   dm-paperclip

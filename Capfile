@@ -9,6 +9,7 @@ require "capistrano/deploy"
 require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/npm'
+require 'capistrano/nginx'
 
 namespace :deploy do
   desc 'Build clientside app'

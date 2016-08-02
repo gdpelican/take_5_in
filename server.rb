@@ -100,7 +100,7 @@ class Admin < Cuba
   end
 
   def place_params(req)
-    resource_params(req, [:name, :subname], [:cover])
+    resource_params(req, [:name, :subname], [:cover, :photo_1, :photo_2, :photo_3, :photo_4, :photo_5])
   end
 
   def photo_params(req)

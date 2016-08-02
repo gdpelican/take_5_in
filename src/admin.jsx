@@ -33,7 +33,7 @@ const Place = React.createClass({
 
   render() {
     let place = this.props.place || {}
-    let style = { backgroundImage: `url(${place.coverUrl})` }
+    let style = place.id ? { backgroundImage: `url(${place.coverUrl})` } : {}
     var contents
 
     if (this.state.visible) {
@@ -45,7 +45,22 @@ const Place = React.createClass({
                      <Input label="Location:" name="subname" defaultValue={place.subname} rounded placeholder="Michigan" />
                    </div>
                    <div className="place-form-field">
-                     <Input label="Cover photo:" name="cover" defaultValue={place.cover} type="file" />
+                     <Input label="Cover photo:" name="cover" type="file" />
+                   </div>
+                   <div className="place-form-field">
+                     <Input label="Photo 1:" name="photo_1" type="file" />
+                   </div>
+                   <div className="place-form-field">
+                     <Input label="Photo 2:" name="photo_2" type="file" />
+                   </div>
+                   <div className="place-form-field">
+                     <Input label="Photo 3:" name="photo_3" type="file" />
+                   </div>
+                   <div className="place-form-field">
+                     <Input label="Photo 4:" name="photo_4" type="file" />
+                   </div>
+                   <div className="place-form-field">
+                     <Input label="Photo 5:" name="photo_5" type="file" />
                    </div>
                    <div className="place-form-field">
                      <Button theme="primary" rounded type="submit" className="place-submit">Save</Button>

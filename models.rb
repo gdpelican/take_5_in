@@ -6,32 +6,36 @@ class Place
   include DataMapper::Resource
   include Paperclip::Resource
 
-  has n, :photos
-
   property :id, Serial
   property :name, String, required: true
   property :subname, String
-  has_attached_file :cover, styles: { cover: "700x300#" }
+
+  def self.styles
+    { thumb: "125x125#", view: "1000x" }
+  end
+
+  has_attached_file :cover,   styles: { cover: "700x300#" }
+  has_attached_file :photo_1, styles: styles
+  has_attached_file :photo_2, styles: styles
+  has_attached_file :photo_3, styles: styles
+  has_attached_file :photo_4, styles: styles
+  has_attached_file :photo_5, styles: styles
+
+  def photos
+    [photo_1, photo_2, photo_3, photo_4, photo_5].select(&:exists?)
+  end
 
   def json
-    { id: self.id, name: self.name, subname: self.subname, coverUrl: self.cover.url(:cover) }
+    {
+      id:       self.id,
+      name:     self.name,
+      subname:  self.subname,
+      coverUrl: self.cover.url(:cover),
+      photos:   self.photos.map { |p| { view: p.url(:view), thumb: p.url(:thumb) } }
+    }
   end
 end
 
-class Photo
-  include DataMapper::Resource
-  include Paperclip::Resource
-
-  belongs_to :place
-
-  property :id, Serial
-  has_attached_file :photo
-
-  def json
-    { id: self.id, place_id: self.place_id, url: self.photo.url }
-  end
-end
-
-DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/take_5_in_development')
+DataMapper.setup(:default, ENV.fetch('DATABASE_URL'], 'postgres://localhost/take_5_in_development')
 DataMapper.finalize
 DataMapper.auto_upgrade!

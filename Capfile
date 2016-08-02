@@ -13,8 +13,12 @@ require 'capistrano/npm'
 namespace :deploy do
   desc 'Build clientside app'
   task :build_clientside_app do
-    within release_path do
-      execute :npm, 'run build'
+    on roles(:app) do
+      within current_path do
+        execute :npm, "run app"
+        execute :npm, "run admin"
+      end
     end
   end
 end
+after "deploy:updated", "build_clientside_app"

@@ -2,7 +2,6 @@ require 'cuba'
 require 'cuba/render'
 require 'cuba/safe'
 require 'tilt/plain'
-require 'byebug'
 
 Cuba.use Rack::Session::Cookie, secret: ENV['SECRET_TOKEN'] || 'notthatsecret'
 Cuba.use Rack::Static, urls: ['/dist/js', '/dist/css', '/dist/img']

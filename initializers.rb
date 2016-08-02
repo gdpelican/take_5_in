@@ -1,5 +1,4 @@
 require 'dm-paperclip'
-require 'byebug'
 require 'dotenv'
 
 Dotenv.load!

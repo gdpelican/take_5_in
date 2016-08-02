@@ -21,5 +21,14 @@ namespace :deploy do
       end
     end
   end
+
+  task :run_server do
+    on roles(:app) do
+      within current_path do
+        execute :rackup "config.ru -o take-five.in -p 80"
+      end
+    end
+  end
 end
 after "deploy:published", "build_clientside_app"
+after "deploy:finished", "run_server"

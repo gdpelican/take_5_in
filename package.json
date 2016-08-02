@@ -38,8 +38,8 @@
     ]
   },
   "scripts": {
-    "app":     "browserify ./src/app.jsx -t babelify -o ./dist/js/app.js",
-    "admin":   "browserify ./src/admin.jsx -t babelify -o ./dist/js/admin.js",
+    "app":     "browserify ./src/app.jsx -t babelify > ./dist/js/app.js",
+    "admin":   "browserify ./src/admin.jsx -t babelify > ./dist/js/admin.js",
     "watch":   "npm-watch",
     "test":    "echo \"Error: no test specified\" && exit 1"
   },

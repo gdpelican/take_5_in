@@ -16,5 +16,6 @@ end
 group :development do
   gem 'capistrano'
   gem 'capistrano-rvm'
+  gem 'capistrano-npm'
   gem 'capistrano-bundler'
 end

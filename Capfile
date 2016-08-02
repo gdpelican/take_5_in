@@ -8,6 +8,13 @@ require "capistrano/deploy"
 # For documentation on these, see for example:
 require 'capistrano/rvm'
 require 'capistrano/bundler'
+require 'capistrano/npm'
 
-# Load custom tasks from `lib/capistrano/tasks` if you have any defined
-Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
+namespace :deploy do
+  desc 'Build clientside app'
+  task :build_clientside_app do
+    within release_path do
+      execute :npm, 'run build'
+    end
+  end
+end

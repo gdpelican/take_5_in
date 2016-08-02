@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:700,400);
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700,400');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
 
 .place-collection {
   display: flex;
@@ -12,36 +14,125 @@
 
 .place {
   position: relative;
-  margin: 15px;
+  margin: 2px;
   display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 2px 2px 3px black;
+}
+
+@media (min-width: 530px) {
+  .place { width: 49%; }
+}
+
+@media (min-width: 832px) {
+  .place { width: 32%; }
+}
+
+@media (min-width: 1250px) {
+  .place { width: 24%; }
 }
 
 .place .Card {
   cursor: pointer;
   margin-bottom: 0 !important;
   padding: 0 !important;
-  border-radius: 10px !important;
   min-height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 400px;
+  width: 100%;
   height: 175px;
+  background-size: cover;
+  background-position: center center;
 }
 
-.place .CardImage {
-  margin: 0 !important;
+.preview-overlay {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: block;
 }
+
+.preview-header {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-size: cover;
+  margin-bottom: 0 !important;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  margin: 0;
+  padding: 0 15px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(17, 17, 17);
+}
+
+.preview-header .fa {
+  cursor: pointer;
+}
+
+.preview-body {
+  flex-grow: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-body img {
+  max-height: calc(100vh - 194px);
+  height: auto;
+  margin-top: 5px;
+  max-width: 100%;
+  box-shadow: 0 0 5px 1px black;
+}
+
+.preview-body .fa {
+  color: white;
+  cursor: pointer;
+  margin: 0 20px;
+  font-size: 2.5em;
+  text-shadow: 0 0 5px black;
+}
+
+.preview-footer {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.preview-footer img {
+  cursor: pointer;
+  height: 125px;
+  margin: 5px;
+  border: 1px solid white;
+  box-shadow: 0 0 5px 1px black;
+}
+
+.preview-footer img.selected {
+  border: 2px solid #cccc66;
+}
+
 
 .place-overlay {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.35);
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
-  border-radius: 10px;
 }
 
 .place-text {
   color: white;
+  text-shadow: 2px 2px 2px black;
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
   display: flex;

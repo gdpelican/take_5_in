@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom'
 import domready from 'domready'
 import request  from 'request'
 import Spinner  from 'react-spinkit'
-import { Card, CardImage, Heading, Text } from 'rebass'
+import FontAwesome             from 'react-fontawesome'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { Card, CardImage, Heading, Text, Overlay, PanelHeader, PanelFooter, Panel, Space } from 'rebass'
 
 const Header = React.createClass({
   render() {
@@ -44,7 +46,7 @@ const PlaceCollection = React.createClass({
 
 const Place = React.createClass({
   getInitialState() {
-    return { loading: true }
+    return { loading: true, open: false }
   },
 
   render() {
@@ -57,8 +59,8 @@ const Place = React.createClass({
                    <Loading />
                  </Card>
     } else {
-      contents = <Card rounded>
-                   <CardImage src={place.coverUrl} />
+      let style = { backgroundImage: `url(${place.coverUrl})` }
+      contents = <Card onClick={this.toggleOpen} style={style} rounded>
                    <div className="place-overlay" />
                    <div className="place-text">
                      <Heading>{place.name}</Heading>
@@ -67,7 +69,14 @@ const Place = React.createClass({
                  </Card>
     }
 
-    return <li className="place" data-place={place.id}>{contents}</li>
+    return <li className="place" data-place={place.id}>
+             {contents}
+             <PlaceDialog open={this.state.open} close={this.toggleOpen} place={place} />
+           </li>
+  },
+
+  toggleOpen() {
+    this.setState({key: Math.random(), open: !this.state.open})
   },
 
   imageLoaded() {
@@ -89,6 +98,65 @@ const Footer = React.createClass({
 
 const Loading = React.createClass({
   render() { return <Spinner noFadeIn spinnerName="double-bounce" /> }
+})
+
+const PlaceDialog = React.createClass({
+  getInitialState() {
+    return { selected: 2, loading: true }
+  },
+
+  render() {
+    if (!this.props.open) { return null }
+    return <div className="preview-overlay">
+      <div className="preview-header">
+        <span>Take Five in</span>
+        <FontAwesome onClick={this.props.close} name="times" />
+      </div>
+      <div className="preview-body">{[this.prev(),this.preview(),this.next()]}</div>
+      <div className="preview-footer">{this.thumbs()}</div>
+    </div>
+  },
+
+  prev() {
+    if (this.state.selected == 0) { return <Space key="prev" x={4} /> }
+    return <FontAwesome onClick={this.select(this.state.selected-1)} key="prev" name="angle-left" />
+  },
+
+  next() {
+    if (this.state.selected == this.props.place.photos.length - 1) { return <Space key="next" x={4} /> }
+    return <FontAwesome onClick={this.select(this.state.selected+1)} key="next" name="angle-right" />
+  },
+
+  preview() {
+    let url = this.selectedImageUrl()
+    if (this.state.loading) {
+      return <img className="hidden" onLoad={this.imageLoaded} key={url} src={url} />
+    } else {
+      return <img key={url} src={url} />
+    }
+  },
+
+  select(index) {
+    return () => { this.setState({selected: index, loading: true}) }
+  },
+
+  thumbs() {
+    return this.props.place.photos.map((urls, index) => {
+      if (index == this.state.selected) {
+        return <img className="selected" key={urls.view} src={urls.thumb} />
+      } else {
+        return <img onClick={this.select(index)} key={urls.view} src={urls.thumb} />
+      }
+    })
+  },
+
+  selectedImageUrl() {
+    return (this.props.place.photos[this.state.selected] || {}).view
+  },
+
+  imageLoaded() {
+    this.setState({key: Math.random(), loading: false})
+  }
 })
 
 domready(() => {

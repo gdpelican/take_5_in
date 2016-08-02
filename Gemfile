@@ -12,3 +12,9 @@ gem 'dotenv', git: 'https://github.com/bkeepers/dotenv.git' # ??
 group :development, :test do
   gem 'byebug'
 end
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+end

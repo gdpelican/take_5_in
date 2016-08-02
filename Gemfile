@@ -7,6 +7,7 @@ gem 'datamapper'
 gem 'dm-postgres-adapter'
 gem 'dm-paperclip'
 gem 'json'
+gem 'dotenv'
 
 group :development, :test do
   gem 'byebug'

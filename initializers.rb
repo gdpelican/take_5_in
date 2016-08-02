@@ -1,7 +1,9 @@
 require 'dm-paperclip'
 require 'byebug'
+require 'dotenv'
 
-Paperclip.config { |config| config.root = 'dist/img' }
+Dotenv.load!
+
 Paperclip::Attachment.default_options.merge!({
   url:  '/dist/img/:class/:id/:attachment/:style/:basename.:extension',
   path: ':web_root:url'

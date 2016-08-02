@@ -80,6 +80,7 @@ DEPENDENCIES
   datamapper
   dm-paperclip
   dm-postgres-adapter
+  dotenv
   json
   tilt
 

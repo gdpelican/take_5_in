@@ -22,7 +22,7 @@ const PlaceCollection = React.createClass({
   },
 
   componentDidMount(data) {
-    request.get(`http://localhost:9292/places`, (err, res, body) => {
+    request.get(`${window.location.origin}/places`, (err, res, body) => {
       if (err) { console.log(err); return }
 
       this.setState({ key: Math.random(), loading: false, places: JSON.parse(body) })

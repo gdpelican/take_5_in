@@ -4,6 +4,14 @@ GIT
   specs:
     dotenv (2.1.1)
 
+GIT
+  remote: https://github.com/carrierwaveuploader/carrierwave-datamapper.git
+  revision: 47d45655796f82535cc053ed2217bd9a23812678
+  specs:
+    carrierwave-datamapper (0.2.2)
+      carrierwave (~> 0.8.0)
+      dm-core (~> 1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -41,9 +49,6 @@ GEM
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-    carrierwave-datamapper (0.2.2)
-      carrierwave (~> 0.8.0)
-      dm-core (~> 1.1)
     concurrent-ruby (1.0.2)
     cuba (3.8.0)
       rack (>= 1.6.0)
@@ -128,7 +133,7 @@ DEPENDENCIES
   capistrano-npm
   capistrano-rvm
   capistrano3-nginx
-  carrierwave-datamapper
+  carrierwave-datamapper!
   cuba
   datamapper
   dm-postgres-adapter

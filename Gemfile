@@ -8,6 +8,7 @@ gem 'dm-postgres-adapter'
 gem 'dm-paperclip'
 gem 'json'
 gem 'dotenv', git: 'https://github.com/bkeepers/dotenv.git' # ??
+gem 'puma'
 
 group :development, :test do
   gem 'byebug'

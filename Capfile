@@ -19,14 +19,19 @@ namespace :deploy do
         execute :mkdir, '-p dist/js'
         execute :npm, "run app"
         execute :npm, "run admin"
-        execute :rackup
+        execute :pwd
+        execute :which, 'rackup'
       end
     end
   end
 
   task :run_server do
     on roles(:app) do
-      # within(current_path) { execute :rackup }
+      within(current_path) do
+        execute :pwd
+        execute :which, 'rackup'
+        # execute :rackup
+      end
     end
   end
 end

@@ -77,33 +77,10 @@ class Admin < Cuba
         res.redirect '/admin'
       end
     end
-
-    # CREATE photo
-    on post, 'photo' do
-      ensure_admin(res) do
-        if Photo.create(photo_params(req))
-          res.redirect '/admin'
-        else
-          res.write 'notok', status: 422
-        end
-      end
-    end
-
-    # DESTROY photo
-    on delete, 'photo/:id' do |id|
-      ensure_admin(res) do
-        Photo.get(id).destroy
-        res.redirect '/admin'
-      end
-    end
   end
 
   def place_params(req)
-    resource_params(req, [:name, :subname], [:cover, :photo_1, :photo_2, :photo_3, :photo_4, :photo_5])
-  end
-
-  def photo_params(req)
-    resource_params(req, [:place_id], [:photo])
+    resource_params(req, [:name, :subname, :cover])
   end
 
   def resource_params(req, normal = [], upload = [])

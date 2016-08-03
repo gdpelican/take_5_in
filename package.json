@@ -32,7 +32,8 @@
     "watchify": "^3.7.0"
   },
   "browserify": {
-    "transform": ["babelify"]
+    "transform": ["babelify"],
+    "extension": ["js", "es6", "jsx"]
   },
   "babel": {
     "minified": true,
@@ -42,14 +43,14 @@
     ]
   },
   "scripts": {
-    "app":     "browserify ./src/app.jsx   > ./dist/js/app.js",
-    "admin":   "browserify ./src/admin.jsx > ./dist/js/admin.js",
+    "app":     "browserify --extension=jsx ./src/app.jsx   > ./dist/js/app.js",
+    "admin":   "browserify --extension=jsx ./src/admin.jsx > ./dist/js/admin.js",
     "watch":   "npm-watch",
     "test":    "echo \"Error: no test specified\" && exit 1"
   },
   "watch": {
-    "app":     "src/app.jsx",
-    "admin":   "src/admin.jsx"
+    "app":     ["src/app.jsx", "src/components/app/*.jsx"],
+    "admin":   ["src/admin.jsx", "src/components/admin/*.jsx"]
   },
   "author":    "James Kiesel (gdpelican)",
   "license":   "MIT"

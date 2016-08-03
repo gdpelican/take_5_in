@@ -26,8 +26,7 @@ namespace :deploy do
   task :run_server do
     on roles(:app) do
       within(current_path) do
-        execute :bundle, 'exec killall ruby'
-        execute :bundle, 'exec rackup -D'
+        execute :bundle, 'exec kill -s SIGUSR2 `jobs -p`'
       end
     end
   end

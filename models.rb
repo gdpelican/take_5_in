@@ -4,10 +4,6 @@ require 'carrierwave/datamapper'
 
 class PhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
-  root './'
-  permissions 0644
-  directory_permissions 0700
 
   def store_dir
     [:dist, :img, :uploads, model.id, mounted_as].join('/')

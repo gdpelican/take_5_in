@@ -27,7 +27,7 @@ namespace :deploy do
     on roles(:app) do
       within(current_path) do
         execute :bundle, 'exec killall ruby'
-        execute :bundle, 'exec rackup'
+        execute :bundle, 'exec rackup -D'
       end
     end
   end

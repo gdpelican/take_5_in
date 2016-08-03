@@ -30,6 +30,16 @@ namespace :deploy do
       end
     end
   end
+
+  desc "Recreate symlink"
+  task :resymlink do
+    on roles(:app) do
+      puts "symlinking..."
+      execute :rm, "-f #{current_path} && ln -s #{release_path} #{current_path}"
+    end
+  end
 end
+
 after "deploy:published", "build_clientside_app"
 after "deploy:finished", "run_server"
+after "deploy:finished", "deploy:resymlink"

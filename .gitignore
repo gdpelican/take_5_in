@@ -3,4 +3,6 @@
 node_modules/
 dist/js/*
 dist/img/places/*
+dist/img/uploads/*
 log/*.log
+.byebug_history

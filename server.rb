@@ -44,7 +44,7 @@ class Admin < Cuba
     end
 
     on post, 'login', param('password') do |password|
-      session[:is_admin] = password == ENV.fetch('ADMIN_PASSWORD', 'devpass'))
+      session[:is_admin] = password == ENV.fetch('ADMIN_PASSWORD', 'devpass')
       res.redirect '/admin'
     end
 

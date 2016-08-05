@@ -17,13 +17,42 @@ class PhotoUploader < CarrierWave::Uploader::Base
   version(:thumb) { process resize_to_fill: [125, 125] }
 end
 
+class ConfigUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+  storage :file
+  root ENV['UPLOAD_DIRECTORY'] || './'
+
+  def store_dir
+    [:dist, :img, :uploads, :config, mounted_as].join('/')
+  end
+
+  version(:thumb) { process resize_to_fill: [125, 125] }
+end
+
 class Config
   include DataMapper::Resource
 
-  property :id, Serial
-  property :description, Text
-  mount_uploader :background, PhotoUploader
-  mount_uploader :avatar, PhotoUploader
+  property :id,               Serial
+  property :description,      Text
+
+  mount_uploader :background_1, ConfigUploader
+  mount_uploader :background_2, ConfigUploader
+  mount_uploader :background_3, ConfigUploader
+  mount_uploader :background_4, ConfigUploader
+  mount_uploader :background_5, ConfigUploader
+  mount_uploader :avatar,       ConfigUploader
+
+  property :background_title_1, String
+  property :background_title_2, String
+  property :background_title_3, String
+  property :background_title_4, String
+  property :background_title_5, String
+
+  property :background_subtitle_1, String
+  property :background_subtitle_2, String
+  property :background_subtitle_3, String
+  property :background_subtitle_4, String
+  property :background_subtitle_5, String
 
   def self.upsert(params)
     puts params
@@ -33,13 +62,27 @@ class Config
   def self.json
     {
       description: instance.description,
-      background:  instance.background.url,
+      backgrounds: instance.backgrounds,
       avatar:      instance.avatar.url(:thumb)
     }
   end
 
   def self.instance
     first || create
+  end
+
+  def backgrounds
+    (1..5).map { |i| background_json_for(i) }.compact
+  end
+
+  def background_json_for(index)
+    return if send(:"background_#{index}").file.nil?
+    {
+      index:    index,
+      url:      send(:"background_#{index}").url,
+      title:    send(:"background_title_#{index}"),
+      subtitle: send(:"background_subtitle_#{index}")
+    }
   end
 end
 
@@ -51,7 +94,7 @@ class Place
   property :subname, String
 
   # sorry mom.
-  mount_uploader :cover, PhotoUploader
+  mount_uploader :cover,   PhotoUploader
   mount_uploader :photo_1, PhotoUploader
   mount_uploader :photo_2, PhotoUploader
   mount_uploader :photo_3, PhotoUploader

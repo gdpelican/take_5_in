@@ -21,7 +21,6 @@ export default React.createClass({
     let places = this.state.places.map(function(place) {
       return <Place key={place.id} place={place}></Place>
     }).concat(<Place key="new" />) // For creating a new Place
-    console.log(places)
-    return <ul className="place-forms">{places}</ul>
+    return <ul className="nested-field-container">{places}</ul>
   }
 })

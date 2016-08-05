@@ -75,7 +75,10 @@ class Admin < Cuba
   end
 
   def config_params
-    resource_params([:description, :avatar, :background])
+    resource_params([:description, :avatar,
+                     :background_1, :background_2, :background_3, :background_4, :background_5,
+                     :background_title_1, :background_title_2, :background_title_3, :background_title_4, :background_title_5,
+                     :background_subtitle_1, :background_subtitle_2, :background_subtitle_3, :background_subtitle_4, :background_subtitle_5])
   end
 
   def place_params

@@ -103,6 +103,19 @@
   text-shadow: 0 0 5px black;
 }
 
+.photo-preview {
+  position: relative;
+}
+
+.photo-preview p {
+  position: absolute;
+  bottom: 0;
+  padding: 15px;
+  background: rgba(0,0,0,0.4);
+  width: 100%;
+  color: white;
+}
+
 .preview-footer {
   padding: 5px;
   display: flex;

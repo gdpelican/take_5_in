@@ -33,3 +33,14 @@
   padding: 15px;
   margin: 10px;
 }
+
+.place-photo-fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photo-form-field {
+  padding: 10px;
+  min-width: 200px;
+  flex-grow: 2;
+}

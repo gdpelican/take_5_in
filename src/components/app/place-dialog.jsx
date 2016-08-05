@@ -1,7 +1,7 @@
-import React       from 'react'
-import Spinner     from 'react-spinkit'
-import FontAwesome from 'react-fontawesome'
-import { Space }   from 'rebass'
+import React           from 'react'
+import Spinner         from 'react-spinkit'
+import FontAwesome     from 'react-fontawesome'
+import { Space, Text } from 'rebass'
 
 
 export default React.createClass({
@@ -32,16 +32,29 @@ export default React.createClass({
   },
 
   preview() {
-    let url = this.selectedImageUrl()
+    let url = this.selectedImage().view
     if (this.state.loading) {
       return <img className="hidden" onLoad={this.imageLoaded} key={url} src={url} />
     } else {
-      return <img key={url} src={url} />
+      return <div className="photo-preview">
+               <img key={url} src={url} />
+               {this.selectedCaption()}
+             </div>
     }
   },
 
   select(index) {
     return () => { this.setState({selected: index, loading: true}) }
+  },
+
+  selectedImage() {
+    return this.props.place.photos[this.state.selected] || {}
+  },
+
+  selectedCaption() {
+    let caption = (this.selectedImage() || {}).caption
+    if (!caption) { return null }
+    return <Text>{caption}</Text>
   },
 
   thumbs() {
@@ -52,10 +65,6 @@ export default React.createClass({
         return <img onClick={this.select(index)} key={urls.view} src={urls.thumb} />
       }
     })
-  },
-
-  selectedImageUrl() {
-    return (this.props.place.photos[this.state.selected] || {}).view
   },
 
   imageLoaded() {

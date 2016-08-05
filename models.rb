@@ -24,6 +24,7 @@ class Place
   property :name, String, required: true
   property :subname, String
 
+  # sorry mom.
   mount_uploader :cover, PhotoUploader
   mount_uploader :photo_1, PhotoUploader
   mount_uploader :photo_2, PhotoUploader
@@ -31,8 +32,20 @@ class Place
   mount_uploader :photo_4, PhotoUploader
   mount_uploader :photo_5, PhotoUploader
 
+  property :caption_1, String
+  property :caption_2, String
+  property :caption_3, String
+  property :caption_4, String
+  property :caption_5, String
+
+  def json_for_photo(index)
+    photo = send(:"photo_#{index}")
+    return if photo.file.nil?
+    { view: photo.url, thumb: photo.url(:thumb), caption: send(:"caption_#{index}")  }
+  end
+
   def photos
-    [photo_1, photo_2, photo_3, photo_4, photo_5].reject { |p| p.file.nil? }
+    (1..5).map { |i| json_for_photo(i) }.compact
   end
 
   def json
@@ -41,11 +54,12 @@ class Place
       name:     self.name,
       subname:  self.subname,
       coverUrl: self.cover.url(:cover),
-      photos:   self.photos.map { |p| { view: p.url, thumb: p.url(:thumb) } }
+      photos:   self.photos
     }
   end
 end
 
+DataMapper::Property::String.length(255)
 DataMapper.setup(:default, ENV.fetch('DATABASE_URL', 'postgres://localhost/take_5_in_development'))
 DataMapper.finalize
 DataMapper.auto_upgrade!

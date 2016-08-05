@@ -17,6 +17,11 @@ Cuba.define do
     res.write partial('index')
   end
 
+  on get, 'config' do
+    res.headers[Rack::CONTENT_TYPE] = 'application/json'
+    res.write Config.json.to_json
+  end
+
   on get, 'places' do
     res.headers[Rack::CONTENT_TYPE] = 'application/json'
     res.write Place.all.map(&:json).to_json
@@ -48,14 +53,19 @@ class Admin < Cuba
       res.redirect '/admin'
     end
 
+    # UPSERT config
+    on post, 'config' do
+      redirect { Config.upsert(config_params) }
+    end
+
     # UPDATE place
     on post, 'places/:id' do |id|
-      redirect { Place.get(id).update(place_params(req)) }
+      redirect { Place.get(id).update(place_params) }
     end
 
     # CREATE place
     on post, 'places' do
-      redirect { Place.create(place_params(req)) }
+      redirect { Place.create(place_params) }
     end
 
     # DESTROY place
@@ -64,19 +74,18 @@ class Admin < Cuba
     end
   end
 
-  def place_params(req)
-    resource_params(req, [:name, :subname, :cover,
-                          :caption_1, :caption_2, :caption_3, :caption_4, :caption_5,
-                          :photo_1, :photo_2, :photo_3, :photo_4, :photo_5])
+  def config_params
+    resource_params([:description, :avatar, :background])
   end
 
-  def resource_params(req, normal = [], upload = [])
-    upload.map(&:to_s).each do |k|
-      next unless req.params[k]
-      req.params[k][:content_type] = req.params[k][:type]
-      req.params[k][:size]         = req.params[k][:tempfile].size
-    end
-    req.params.select { |k,v| (normal|upload).include?(k.to_sym) }
+  def place_params
+    resource_params([:name, :subname, :cover,
+                     :caption_1, :caption_2, :caption_3, :caption_4, :caption_5,
+                     :photo_1, :photo_2, :photo_3, :photo_4, :photo_5])
+  end
+
+  def resource_params(fields = [])
+    req.params.select { |k,v| fields.include?(k.to_sym) }
   end
 
   def ensure_admin

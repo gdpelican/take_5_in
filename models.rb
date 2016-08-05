@@ -17,6 +17,32 @@ class PhotoUploader < CarrierWave::Uploader::Base
   version(:thumb) { process resize_to_fill: [125, 125] }
 end
 
+class Config
+  include DataMapper::Resource
+
+  property :id, Serial
+  property :description, Text
+  mount_uploader :background, PhotoUploader
+  mount_uploader :avatar, PhotoUploader
+
+  def self.upsert(params)
+    puts params
+    instance.update(params)
+  end
+
+  def self.json
+    {
+      description: instance.description,
+      background:  instance.background.url,
+      avatar:      instance.avatar.url(:thumb)
+    }
+  end
+
+  def self.instance
+    first || create
+  end
+end
+
 class Place
   include DataMapper::Resource
 

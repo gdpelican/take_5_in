@@ -6,8 +6,24 @@ html, body { margin: 0; padding: 0; }
 
 .header {
   height: 100vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-background-image {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  transition: opacity 0.3s;
+  opacity: 1;
   background-size: cover;
   background-position: center center;
+}
+
+.header .spinner .double-bounce1,
+.header .spinner .double-bounce2 {
+  background-color: white;
 }
 
 .background-navigator {
@@ -190,4 +206,4 @@ html, body { margin: 0; padding: 0; }
   font-weight: bold;
 }
 
-.hidden { display: none; }
+.hidden { opacity: 0 !important; }

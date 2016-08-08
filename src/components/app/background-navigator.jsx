@@ -9,9 +9,9 @@ export default React.createClass({
   render() {
     let backgrounds = this.props.backgrounds.map((background) => {
       if(background.index == this.state.selected) {
-        return <FontAwesome className="selected" key={background.index} name="circle" />
+        return <FontAwesome key={background.index} name="circle" />
       } else {
-        return <FontAwesome onClick={this.select(background.index)} key={background.index} name="circle" />
+        return <FontAwesome className="faded" onClick={this.select(background.index)} key={background.index} name="circle" />
       }
     })
 

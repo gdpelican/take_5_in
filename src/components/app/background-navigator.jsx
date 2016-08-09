@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome'
 
 export default React.createClass({
   getInitialState() {
-    return { selected: this.props.selected }
+    return { selected: this.props.selected.index }
   },
 
   render() {
@@ -15,10 +15,16 @@ export default React.createClass({
       }
     })
 
-    return <div className="background-navigator">
-             {this.prev()}
-             {backgrounds}
-             {this.next()}
+    return <div className={this.props.className}>
+             <div className="currently-in">
+               <p>Currently in</p>
+               <h2>{this.props.selected.title}, {this.props.selected.subtitle}</h2>
+             </div>
+             <div>
+               {this.prev()}
+               {backgrounds}
+               {this.next()}
+             </div>
            </div>
   },
 
@@ -28,12 +34,12 @@ export default React.createClass({
 
   prev() {
     if (this.state.selected == Math.min(...this.selectedIndices())) { return null }
-    return <FontAwesome className="adjacent" onClick={this.select(this.state.selected-1)} name="angle-up" />
+    return <FontAwesome className="adjacent faded" onClick={this.select(this.state.selected-1)} name="caret-left" />
   },
 
   next() {
     if (this.state.selected == Math.max(...this.selectedIndices())) { return null }
-    return <FontAwesome className="adjacent" onClick={this.select(this.state.selected+1)} name="angle-down" />
+    return <FontAwesome className="adjacent faded" onClick={this.select(this.state.selected+1)} name="caret-right" />
   },
 
   select(index) {

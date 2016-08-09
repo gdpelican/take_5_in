@@ -1,6 +1,6 @@
 import React               from 'react'
-import Loading             from '../common/loading'
 import BackgroundNavigator from './background-navigator'
+import HeaderBadge         from './header-badge'
 import request             from 'request'
 import FontAwesome         from 'react-fontawesome'
 
@@ -25,7 +25,6 @@ export default React.createClass({
   },
 
   imageLoaded() {
-    this.setState({ imagesLoaded: this.state.imagesLoaded+1 })
     if (this.state.imagesLoaded+1 >= this.backgrounds().length) {
       this.setState({ imagesLoaded: null, selected: 1, status: 'ready' })
     } else {
@@ -34,28 +33,27 @@ export default React.createClass({
   },
 
   render() {
+    var content   = null
+    var navigator = null
+
     switch(this.state.status) {
-      case 'initialLoad':
-        return <div><Loading /></div>
-      case 'imageLoad':
-        return <div>
-                 <Loading />
-                 {this.backgroundImages()}
-               </div>
-      case 'ready':
-        let config = this.state.config
-        return <div>
-                 {this.backgroundDivs()}
-                 <div className="header-over-image header-badge">
-                   <h1>Take 5 in</h1>
-                   <h2>{this.selectedBackground().title}</h2>
-                   <p>{this.selectedBackground().subtitle}</p>
-                 </div>
-                 <div className="header-over-image header-see-more">See More</div>
-                 <FontAwesome className="header-scroll-indicator" name="angle-down" />
-                 <BackgroundNavigator backgrounds={this.backgrounds()} selected={this.state.selected} select={this.selectBackground} />
-               </div>
+      case 'imageLoad': content = this.backgroundImages(); break
+      case 'ready':     content = this.backgroundDivs(); break
     }
+
+    if (this.selectedBackground()) {
+      navigator = <BackgroundNavigator className={this.state.status + ' header-over-image background-navigator'}
+                                       backgrounds={this.backgrounds()}
+                                       selected={this.selectedBackground()}
+                                       select={this.selectBackground} />
+    }
+
+    return <div>
+             <HeaderBadge className={this.state.status + ' header-over-image header-badge'} />
+             {content}
+             <FontAwesome className={this.state.status + ' header-scroll-indicator'} name="angle-down" />
+             {navigator}
+           </div>
   },
 
   selectBackground(selected) {
@@ -74,6 +72,13 @@ export default React.createClass({
       if (b.index != this.state.selected) { className += ' hidden' }
       return <div className={className} key={b.index} style={{ backgroundImage: `url(${b.url})` }} />
     })
+  },
+
+  navigator() {
+    return <BackgroundNavigator status={this.state.status}
+                                backgrounds={this.backgrounds()}
+                                selected={this.state.selected}
+                                select={this.selectBackground} />
   },
 
   selectedBackground() {

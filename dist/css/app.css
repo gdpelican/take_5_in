@@ -1,16 +1,82 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:700,400');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Bad+Script');
 @import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
 
-html, body { margin: 0; padding: 0; }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    margin: -20px;
+  }
+  to   {
+    opacity: 1;
+    margin: 0;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
 
 .header {
   height: 100vh;
   background-color: black;
   display: flex;
+  flex-direction: column;
+  text-align: center;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   color: white;
+  font-family: 'Bad Script', sans-serif;
+}
+
+.header-badge {
+  margin-top: 20vh;
+}
+
+.header-badge .loading {
+  transition: opacity 0.7s;
+  opacity: 1;
+  margin: 100px auto 0;
+}
+
+.header-badge.ready .loading {
+  opacity: 0;
+}
+
+.header-badge {
+  opacity: 0;
+  transition: 0.7s all;
+  top : 20px;
+}
+
+.header-badge.imageLoad,
+.header-badge.ready {
+  opacity: 1;
+  top: 0;
+}
+
+.header-title {
+  font-size: 80px;
+  line-height: 170px;
+  margin: 0;
+  text-shadow: 0 0 4px black;
+}
+
+.header-title .five {
+  padding: 30px;
+  position: relative;
+  bottom: 38px;
+  font-size: 150px;
+}
+
+.header-subtitle {
+  margin: 0;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 2px black;
+  text-transform: uppercase;
 }
 
 .header-scroll-indicator {
@@ -29,22 +95,26 @@ html, body { margin: 0; padding: 0; }
   pointer-events: none;
   top: 0; left: 0; bottom: 0; right: 0;
   transition: opacity 0.7s;
-  opacity: 1;
   background-size: cover;
   background-position: center center;
+}
+
+.header-background-image:not(.hidden) {
+  animation: fadeIn 1s;
 }
 
 .header-over-image {
   position: relative;
   color: white;
   text-align: center;
-  font-family: 'Yanone Kaffeesatz', sans-serif;
+  z-index: 10;
 }
 
-.icon-over-image {
-  position: relative;
-  z-index: 10;
-  color: white;
+.header-see-more {
+  font-family: "Montserrat", sans-serif;
+  padding: 10px 5px;
+  border: 2px solid white;
+  border-radius: 4px;;
 }
 
 .header .spinner .double-bounce1,
@@ -53,24 +123,53 @@ html, body { margin: 0; padding: 0; }
 }
 
 .background-navigator {
-  position: absolute;
-  top: 10px;
-  right: 15px;
+  animation: fadeIn 1s;
 }
 
-.background-navigator .fa {
-  display: block;
-  opacity: 1;
-  transition: opacity 0.7s;
+.background-navigator .currently-in {
   text-shadow: 0 0 3px black;
 }
 
+.background-navigator .currently-in p {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.background-navigator .currently-in h2 {
+  margin: 0;
+}
+
+.background-navigator .fa {
+  transition: opacity 0.7s;
+  text-shadow: 0 0 3px black;
+  margin: 0 3px;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.background-navigator .fa:hover {
+  opacity: 0.7;
+}
+
+.background-navigator .fa:not(.faded) {
+  opacity: 1;
+}
+
 .background-navigator .fa-circle:first-child:not(.faded) {
-  padding-top: 21px;
+  padding-left: 14px;
+}
+
+.background-navigator .fa-circle:last-child:not(.faded) {
+  padding-right: 14px;
 }
 
 .background-navigator .fa.adjacent {
-  font-size: 1.35em;
+  position: relative;
+  top: 3px;
+  font-size: 1.5em;
 }
 
 
@@ -141,7 +240,6 @@ html, body { margin: 0; padding: 0; }
   display: flex;
   align-items: center;
   font-size: 30px;
-  font-family: 'Yanone Kaffeesatz', sans-serif;
   margin: 0;
   padding: 0 15px;
   color: rgb(255, 255, 255);
@@ -231,5 +329,5 @@ html, body { margin: 0; padding: 0; }
   font-weight: bold;
 }
 
-.faded {  opacity: 0.3 !important; }
+.faded {  opacity: 0.3; }
 .hidden { opacity: 0 !important; }

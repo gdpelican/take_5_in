@@ -29,24 +29,6 @@ html, body {
   padding: 0;
   width: 100%;
   -webkit-font-smoothing: antialiased;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-body.sidebar-open nav  { flex-basis: 25%; }
-body.sidebar-open main { flex-basis: 75%; }
-
-nav {
-  position: fixed;
-  left: 0;
-  flex-basis: 0%;
-  transition: all 0.7s;
-}
-main {
-  flex-basis: 100%;
-  justify-content: flex-end;
-  transition: all 0.7s;
 }
 
 .header {
@@ -62,12 +44,33 @@ main {
   font-family: 'Bad Script', sans-serif;
 }
 
-.header-sidebar-toggle {
+// grr, this is why inline styling sucks.
+#wrap[style*='transform-style:'] {
+  transform: translate3d(200px, 0px, -800px) rotateY(-20deg) !important;
+}
+
+.bm-burger-button {
+  z-index: 10;
   position: absolute !important;
   left: 10px;
   top: 10px;
-  text-shadow: 0 0 2px black;
+  font-size: 1.5em;
+  width: 25px;
+  height: 22px;
+}
+
+.bm-burger-button button,
+.bm-cross-button button {
   cursor: pointer;
+}
+
+.bm-burger-bars {
+  background: white;
+  box-shadow: 0 0 2px black;
+}
+
+.bm-cross {
+  background-color: white;
 }
 
 .header-badge {

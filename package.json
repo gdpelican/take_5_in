@@ -8,6 +8,7 @@
     "domready": "^1.0.8",
     "react": "^15.3.0",
     "react-addons-css-transition-group": "^15.3.0",
+    "react-burger-menu": "^1.10.2",
     "react-dom": "^15.3.0",
     "react-dropzone": "^3.5.3",
     "react-fontawesome": "^1.1.0",
@@ -32,8 +33,14 @@
     "watchify": "^3.7.0"
   },
   "browserify": {
-    "transform": ["babelify"],
-    "extension": ["js", "es6", "jsx"]
+    "transform": [
+      "babelify"
+    ],
+    "extension": [
+      "js",
+      "es6",
+      "jsx"
+    ]
   },
   "babel": {
     "minified": true,
@@ -43,15 +50,21 @@
     ]
   },
   "scripts": {
-    "app":     "browserify --extension=jsx ./src/app.jsx   > ./dist/js/app.js",
-    "admin":   "browserify --extension=jsx ./src/admin.jsx > ./dist/js/admin.js",
-    "watch":   "npm-watch",
-    "test":    "echo \"Error: no test specified\" && exit 1"
+    "app": "browserify --extension=jsx ./src/app.jsx   > ./dist/js/app.js",
+    "admin": "browserify --extension=jsx ./src/admin.jsx > ./dist/js/admin.js",
+    "watch": "npm-watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "watch": {
-    "app":     ["src/app.jsx", "src/components/app/*.jsx"],
-    "admin":   ["src/admin.jsx", "src/components/admin/*.jsx"]
+    "app": [
+      "src/app.jsx",
+      "src/components/app/*.jsx"
+    ],
+    "admin": [
+      "src/admin.jsx",
+      "src/components/admin/*.jsx"
+    ]
   },
-  "author":    "James Kiesel (gdpelican)",
-  "license":   "MIT"
+  "author": "James Kiesel (gdpelican)",
+  "license": "MIT"
 }

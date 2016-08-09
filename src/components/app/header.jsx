@@ -48,10 +48,7 @@ export default React.createClass({
                                        select={this.selectBackground} />
     }
 
-    return <div>
-             <a className="header-sidebar-toggle header-over-image" onClick={this.toggleSidebar}>
-               <FontAwesome name="bars" size="2x" />
-             </a>
+    return <div className="header">
              <HeaderBadge className={this.state.status + ' header-over-image header-badge'} />
              {content}
              <FontAwesome className={this.state.status + ' header-scroll-indicator'} name="angle-down" />

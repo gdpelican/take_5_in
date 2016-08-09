@@ -49,6 +49,9 @@ export default React.createClass({
     }
 
     return <div>
+             <a className="header-sidebar-toggle header-over-image" onClick={this.toggleSidebar}>
+               <FontAwesome name="bars" size="2x" />
+             </a>
              <HeaderBadge className={this.state.status + ' header-over-image header-badge'} />
              {content}
              <FontAwesome className={this.state.status + ' header-scroll-indicator'} name="angle-down" />
@@ -85,5 +88,9 @@ export default React.createClass({
     return this.backgrounds().find((b) => {
       return b.index == this.state.selected
     })
+  },
+
+  toggleSidebar() {
+    document.body.classList.toggle('sidebar-open')
   }
 })

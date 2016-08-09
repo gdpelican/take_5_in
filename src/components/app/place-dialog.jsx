@@ -6,14 +6,17 @@ import { Space, Text } from 'rebass'
 
 export default React.createClass({
   getInitialState() {
-    return { selected: 2, loading: true }
+    return { selected: 0, loading: true }
   },
 
   render() {
     if (!this.props.open) { return null }
     return <div className="preview-overlay">
       <div className="preview-header">
-        <span>Take Five in</span>
+        <div className="preview-title">
+          <span>Take 5 in</span>
+          <span>{this.props.place.name}, {this.props.place.subname}</span>
+        </div>
         <FontAwesome onClick={this.props.close} name="times" />
       </div>
       <div className="preview-body">{[this.prev(),this.preview(),this.next()]}</div>

@@ -13,13 +13,41 @@
   }
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    margin: -100px 0;
+  }
+  to {
+    opacity: 1;
+    margin: 0;
+  }
+}
+
 html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: row;
+}
+
+body.sidebar-open nav  { flex-basis: 25%; }
+body.sidebar-open main { flex-basis: 75%; }
+
+nav {
+  width: 0;
+  flex-basis: 0%;
+  transition: all 0.7s;
+}
+main {
+  flex-basis: 100%;
+  transition: all 0.7s;
 }
 
 .header {
+  position: relative;
   height: 100vh;
   background-color: black;
   display: flex;
@@ -29,6 +57,14 @@ html, body {
   justify-content: flex-start;
   color: white;
   font-family: 'Bad Script', sans-serif;
+}
+
+.header-sidebar-toggle {
+  position: absolute !important;
+  left: 10px;
+  top: 10px;
+  text-shadow: 0 0 2px black;
+  cursor: pointer;
 }
 
 .header-badge {
@@ -125,13 +161,6 @@ html, body {
   color: white;
   text-align: center;
   z-index: 10;
-}
-
-.header-see-more {
-  font-family: "Montserrat", sans-serif;
-  padding: 10px 5px;
-  border: 2px solid white;
-  border-radius: 4px;;
 }
 
 .header .spinner .double-bounce1,
@@ -240,12 +269,13 @@ html, body {
   position: fixed;
   top: 0; right: 0; bottom: 0; left: 0;
   background-color: rgba(0,0,0,0.5);
-  z-index: 4;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   display: block;
+  animation: slideIn 0.3s;
 }
 
 .preview-header {
@@ -261,7 +291,16 @@ html, body {
   margin: 0;
   padding: 0 15px;
   color: rgb(255, 255, 255);
+  font-family: "Bad Script", sans-serif;
   background-color: rgb(17, 17, 17);
+}
+
+.preview-title {
+  font-weight: bold;
+}
+
+.preview-title span {
+  padding: 0 5px;
 }
 
 .preview-header .fa {
@@ -273,6 +312,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: slideIn 0.7s;
 }
 
 .preview-body img {
@@ -305,7 +345,6 @@ html, body {
 }
 
 .preview-footer {
-  padding: 5px;
   display: flex;
   flex-direction: row;
   justify-content: center;

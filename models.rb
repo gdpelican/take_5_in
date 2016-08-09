@@ -61,9 +61,7 @@ class Config
 
   def self.json
     {
-      description: instance.description,
       backgrounds: instance.backgrounds,
-      avatar:      instance.avatar.url(:thumb)
     }
   end
 

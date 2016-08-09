@@ -28,12 +28,6 @@ export default React.createClass({
     })
 
     return <form method="post" encType="multipart/form-data" action={"/admin/config"} className="config-form">
-             <div className="place-form-field">
-               <Textarea label="Description:" name="description" defaultValue={config.description} />
-             </div>
-             <div className="place-form-field">
-               <Input label="Avatar:" name="avatar" type="file" />
-             </div>
              <div className="nested-field-container">{background_fields}</div>
              <Button theme="primary" rounded type="submit" className="config-submit">Save</Button>
            </form>

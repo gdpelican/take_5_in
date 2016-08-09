@@ -73,6 +73,11 @@ html, body {
   background-color: white;
 }
 
+.bm-menu-wrap {
+  box-shadow: 0 0 4px black;
+  background: green;
+}
+
 .header-badge {
   margin-top: 20vh;
 }
@@ -103,7 +108,7 @@ html, body {
   font-size: 80px;
   line-height: 170px;
   margin: 0;
-  text-shadow: 0 0 4px black;
+  text-shadow: 0 0 5px black;
 }
 
 .header-title .five {
@@ -117,7 +122,7 @@ html, body {
   margin: 0;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   letter-spacing: 0.08em;
-  text-shadow: 0 0 2px black;
+  text-shadow: 0 0 5px black;
   text-transform: uppercase;
 }
 
@@ -139,14 +144,9 @@ html, body {
 }
 
 .header-scroll-indicator {
-  position: absolute;
-  left: 0;
-  bottom: 0;
   width: 100%;
   text-align: center;
-  font-size: 3em;
-  text-shadow: 0 0 4px black;
-  cursor: pointer;
+  font-size: 2em;
 }
 
 .header-background-image {
@@ -169,6 +169,19 @@ html, body {
   z-index: 10;
 }
 
+.header-see-more {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 5px black;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: white;
+  text-decoration: inherit;
+}
+
 .header .spinner .double-bounce1,
 .header .spinner .double-bounce2 {
   background-color: white;
@@ -179,7 +192,7 @@ html, body {
 }
 
 .background-navigator .currently-in {
-  text-shadow: 0 0 3px black;
+  text-shadow: 0 0 5px black;
 }
 
 .background-navigator .currently-in p {
@@ -318,7 +331,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: slideIn 0.7s;
+  animation: slideIn 0.5s;
 }
 
 .preview-body img {

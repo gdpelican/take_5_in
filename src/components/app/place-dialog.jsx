@@ -39,8 +39,8 @@ export default React.createClass({
     if (this.state.loading) {
       return <img className="hidden" onLoad={this.imageLoaded} key={url} src={url} />
     } else {
-      return <div className="photo-preview">
-               <img key={url} src={url} />
+      return <div key={url} className="photo-preview">
+               <img src={url} />
                {this.selectedCaption()}
              </div>
     }

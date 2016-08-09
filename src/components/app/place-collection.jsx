@@ -24,7 +24,7 @@ export default React.createClass({
     })
 
     if (places.length) {
-      return <ul className="place-collection">{places}</ul>
+      return <ul id="places" className="place-collection">{places}</ul>
     } else {
       return <div className="no-places">No places stored!</div>
     }

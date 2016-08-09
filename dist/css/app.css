@@ -79,6 +79,23 @@ html, body {
   text-transform: uppercase;
 }
 
+@media (max-width: 640px){
+  .header-title {
+    font-size: 60px;
+    line-height: 120px;
+  }
+
+  .header-title  .five{
+    padding: 20px;
+    bottom: 20px;
+    font-size: 100px;
+  }
+
+  .header-subtitle {
+    font-size: 20px;
+  }
+}
+
 .header-scroll-indicator {
   position: absolute;
   left: 0;
@@ -176,6 +193,7 @@ html, body {
 .place-collection {
   display: flex;
   flex-wrap: wrap;
+  flex-basis: 33%;
   justify-content: center;
   align-content: space-between;
   list-style-type: none;
@@ -193,15 +211,15 @@ html, body {
 }
 
 @media (min-width: 530px) {
-  .place { width: 49%; }
+  .place { flex-basis: calc(50% - 4px); }
 }
 
 @media (min-width: 832px) {
-  .place { width: 32%; }
+  .place { flex-basis: calc(33% - 4px); }
 }
 
 @media (min-width: 1250px) {
-  .place { width: 24%; }
+  .place { flex-basis: calc(25% - 4px); }
 }
 
 .place .Card {

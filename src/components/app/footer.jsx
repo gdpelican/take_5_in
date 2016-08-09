@@ -10,7 +10,7 @@ export default React.createClass({
                 <span> with </span>
                 <img className="no-radius" src="/dist/img/emojis/love.png" />
                 <span> by </span>
-                <a href="https://www.github.com/gdpelican">
+                <a href="https://www.github.com/gdpelican" target="_blank">
                   <img src="/dist/img/emojis/james.png" />
                 </a>
               </div>

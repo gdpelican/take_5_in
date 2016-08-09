@@ -12,6 +12,7 @@
     "react-dom": "^15.3.0",
     "react-dropzone": "^3.5.3",
     "react-fontawesome": "^1.1.0",
+    "react-scroll": "^1.2.0",
     "react-spinkit": "^1.1.8",
     "rebass": "^0.3.0",
     "request": "^2.74.0"

@@ -2,6 +2,7 @@ import React               from 'react'
 import BackgroundNavigator from './background-navigator'
 import HeaderBadge         from './header-badge'
 import request             from 'request'
+import Scroll              from 'react-scroll'
 import FontAwesome         from 'react-fontawesome'
 
 export default React.createClass({
@@ -51,12 +52,18 @@ export default React.createClass({
     return <div className="header">
              <HeaderBadge className={this.state.status + ' header-over-image header-badge'} />
              {content}
-             <a href="#places" className="header-see-more">
+             <a onClick={this.scrollTo('#places')} className="header-see-more">
                <span>See more</span>
                <FontAwesome className={this.state.status + ' header-scroll-indicator'} name="angle-down" />
              </a>
              {navigator}
            </div>
+  },
+
+  scrollTo(selector) {
+    return () => {
+      Scroll.animateScroll.scrollTo(document.querySelector(selector).offsetTop)
+    }
   },
 
   selectBackground(selected) {

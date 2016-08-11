@@ -4,8 +4,6 @@ require 'carrierwave/datamapper'
 
 class PhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
-  root ENV['UPLOAD_DIRECTORY'] || './'
 
   def store_dir
     [:dist, :img, :uploads, model.id, mounted_as].join('/')
@@ -19,8 +17,6 @@ end
 
 class ConfigUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
-  root ENV['UPLOAD_DIRECTORY'] || './'
 
   def store_dir
     [:dist, :img, :uploads, :config, mounted_as].join('/')

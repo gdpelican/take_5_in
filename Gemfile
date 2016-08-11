@@ -21,4 +21,5 @@ group :development do
   gem 'capistrano-npm'
   gem 'capistrano-bundler'
   gem 'capistrano3-nginx'
+  gem 'capistrano3-puma'
 end

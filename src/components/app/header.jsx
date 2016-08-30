@@ -25,11 +25,10 @@ export default React.createClass({
     })
   },
 
-  imageLoaded() {
-    if (this.state.imagesLoaded+1 >= this.backgrounds().length) {
-      this.setState({ imagesLoaded: null, selected: 1, status: 'ready' })
-    } else {
-      this.setState({ imagesLoaded: this.state.imagesLoaded+1, status: 'imageLoad' })
+  imageLoaded(index) {
+    return function() {
+      if (index != 1) { return }
+      this.setState({ selected: 1, status: 'ready' })
     }
   },
 
@@ -52,18 +51,12 @@ export default React.createClass({
     return <div className="header">
              <HeaderBadge className={this.state.status + ' header-over-image header-badge'} />
              {content}
-             <a onClick={this.scrollTo('#places')} className="header-see-more">
+             <a href="#places" className="header-see-more">
                <span>See more</span>
                <FontAwesome className={this.state.status + ' header-scroll-indicator'} name="angle-down" />
              </a>
              {navigator}
            </div>
-  },
-
-  scrollTo(selector) {
-    return () => {
-      Scroll.animateScroll.scrollTo(document.querySelector(selector).offsetTop)
-    }
   },
 
   selectBackground(selected) {

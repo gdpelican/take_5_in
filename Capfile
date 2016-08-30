@@ -17,8 +17,8 @@ namespace :deploy do
     on roles(:app) do
       within current_path do
         execute :mkdir, '-p dist/js'
-        execute :npm, "run app"
-        execute :npm, "run admin"
+        execute :npm, "run app:production"
+        execute :npm, "run admin:production"
       end
     end
   end

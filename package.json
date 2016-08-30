@@ -10,7 +10,6 @@
     "react-addons-css-transition-group": "^15.3.0",
     "react-burger-menu": "^1.10.2",
     "react-dom": "^15.3.0",
-    "react-dropzone": "^3.5.3",
     "react-fontawesome": "^1.1.0",
     "react-scroll": "^1.2.0",
     "react-spinkit": "^1.1.8",
@@ -23,11 +22,13 @@
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "cssify": "^1.0.3",
+    "envify": "^3.4.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-pipe": "^1.0.4",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-watch": "^4.3.9",
+    "minifyify": "^7.3.3",
     "npm-watch": "^0.1.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
@@ -35,7 +36,8 @@
   },
   "browserify": {
     "transform": [
-      "babelify"
+      "babelify",
+      "envify"
     ],
     "extension": [
       "js",
@@ -53,6 +55,8 @@
   "scripts": {
     "app": "browserify --extension=jsx ./src/app.jsx   > ./dist/js/app.js",
     "admin": "browserify --extension=jsx ./src/admin.jsx > ./dist/js/admin.js",
+    "app:production": "browserify -p [minifyify --no-map] --extension=jsx ./src/app.jsx   > ./dist/js/app.js",
+    "admin:production": "browserify -p [minifyify --no-map] --extension=jsx ./src/admin.jsx > ./dist/js/admin.js",
     "watch": "npm-watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -10,6 +10,7 @@ require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/npm'
 require 'capistrano/nginx'
+require 'capistrano/puma'
 
 namespace :deploy do
   desc 'Build clientside app'

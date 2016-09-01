@@ -1,5 +1,4 @@
 import React                   from 'react'
-import request                 from 'request'
 import Spinner                 from 'react-spinkit'
 import { Card, Heading, Text } from 'rebass'
 import PlaceDialog             from './place-dialog'

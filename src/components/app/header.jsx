@@ -1,7 +1,7 @@
 import React               from 'react'
 import BackgroundNavigator from './background-navigator'
 import HeaderBadge         from './header-badge'
-import request             from 'request'
+import xhr                 from 'xhr'
 import Scroll              from 'react-scroll'
 import FontAwesome         from 'react-fontawesome'
 
@@ -19,7 +19,7 @@ export default React.createClass({
   },
 
   componentDidMount(data) {
-    request.get(`${window.location.origin}/config`, (err, res, body) => {
+    xhr.get(`${window.location.origin}/config`, (err, res, body) => {
       if (err) { console.log(err); return }
       this.setState({config: JSON.parse(body), status: 'imageLoad', imagesLoaded: 0 })
     })

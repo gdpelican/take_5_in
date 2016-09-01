@@ -10,7 +10,16 @@ export default React.createClass({
   render() {
     return <div id="container">
              <BurgerMenu.scaleRotate pageWrapId={"wrap"} outerContainerId={"container"}>
-               <a>Hello world!</a>
+               <ul className="sidebar-content">
+                 <li>
+                   <h2>What is this?</h2>
+                   <p>Take five in is a photo project by</p>
+                 </li>
+                 <li>
+                   <h2>About the author</h2>
+                   <p>James is a software developer</p>
+                 </li>
+               </ul>
              </BurgerMenu.scaleRotate>
              <main id="wrap">
                <Header />

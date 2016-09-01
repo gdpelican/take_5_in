@@ -1,5 +1,5 @@
 import React   from 'react'
-import request from 'request'
+import xhr from 'xhr'
 import Place   from './place'
 import Loading from '../common/loading'
 
@@ -9,9 +9,8 @@ export default React.createClass({
   },
 
   componentDidMount(data) {
-    request.get(`${window.location.origin}/places`, (err, res, body) => {
+    xhr.get(`${window.location.origin}/places`, (err, res, body) => {
       if (err) { console.log(err); return }
-
       this.setState({ key: Math.random(), loading: false, places: JSON.parse(body) })
     })
   },

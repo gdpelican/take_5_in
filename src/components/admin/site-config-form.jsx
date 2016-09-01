@@ -1,5 +1,5 @@
 import React     from 'react'
-import request   from 'request'
+import xhr       from 'xhr'
 import Loading   from '../common/loading'
 import { Textarea, Input, Button } from 'rebass'
 
@@ -9,7 +9,7 @@ export default React.createClass({
   },
 
   componentDidMount(data) {
-    request.get(`${window.location.origin}/config`, (err, res, body) => {
+    xhr.get(`${window.location.origin}/config`, (err, res, body) => {
       if (err) { console.log(err); return }
       this.setState({config: JSON.parse(body), loading: false })
     })

@@ -26,6 +26,9 @@ export default React.createClass({
                    <div className="place-form-field">
                      <Input label="Location:" name="subname" defaultValue={place.subname} rounded placeholder="Michigan" />
                    </div>
+                   <div className="place-cover-field">
+                     <Input label="Cover:" name="cover" type="file" />
+                   </div>
                    <div className="place-photo-fields">{photo_fields}</div>
                    <div className="place-form-field">
                      <Button theme="primary" rounded type="submit" className="place-submit">Save</Button>

@@ -18,10 +18,5 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano'
-  gem 'capistrano-rvm'
-  gem 'capistrano-npm'
-  gem 'capistrano-bundler'
-  gem 'capistrano3-nginx'
-  gem 'capistrano3-puma'
+  gem 'mina'
 end

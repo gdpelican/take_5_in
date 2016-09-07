@@ -23,8 +23,6 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    airbrussh (1.1.0)
-      sshkit (>= 1.6.1, != 1.7.0)
     aws-sdk (2.5.2)
       aws-sdk-resources (= 2.5.2)
     aws-sdk-core (2.5.2)
@@ -35,26 +33,6 @@ GEM
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
     byebug (9.0.5)
-    capistrano (3.6.0)
-      airbrussh (>= 1.0.0)
-      capistrano-harrow
-      i18n
-      rake (>= 10.0.0)
-      sshkit (>= 1.9.0)
-    capistrano-bundler (1.1.4)
-      capistrano (~> 3.1)
-      sshkit (~> 1.2)
-    capistrano-harrow (0.5.3)
-    capistrano-npm (1.0.2)
-      capistrano (>= 3.0.0)
-    capistrano-rvm (0.1.2)
-      capistrano (~> 3.0)
-      sshkit (~> 1.2)
-    capistrano3-nginx (2.1.5)
-      capistrano (>= 3.0.0)
-    capistrano3-puma (1.2.1)
-      capistrano (~> 3.0)
-      puma (>= 2.6)
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -117,18 +95,16 @@ GEM
     jmespath (1.3.1)
     json (1.8.3)
     json_pure (1.8.3)
+    mina (0.3.8)
+      open4 (~> 1.3.4)
+      rake
     mini_magick (4.5.1)
     minitest (5.9.0)
     multi_json (1.12.1)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-ssh (3.2.0)
+    open4 (1.3.4)
     puma (3.4.0)
     rack (2.0.1)
     rake (11.2.2)
-    sshkit (1.11.2)
-      net-scp (>= 1.1.2)
-      net-ssh (>= 2.8.0)
     stringex (1.5.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
@@ -141,12 +117,6 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capistrano
-  capistrano-bundler
-  capistrano-npm
-  capistrano-rvm
-  capistrano3-nginx
-  capistrano3-puma
   carrierwave-aws
   carrierwave-datamapper!
   cuba
@@ -154,6 +124,7 @@ DEPENDENCIES
   dm-postgres-adapter
   dotenv!
   json
+  mina
   mini_magick
   puma
   tilt

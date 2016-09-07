@@ -19,4 +19,5 @@ end
 
 group :development do
   gem 'mina'
+  gem 'mina-npm'
 end

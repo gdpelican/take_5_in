@@ -81,13 +81,11 @@ task :deploy => :environment do
     queue  'npm run app:production'
     queue  'npm run admin:production'
     invoke :'deploy:cleanup'
-    invoke :'puma:restart'
-    invoke :'nginx:restart'
 
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-      invoke :'puma:phased_restart'
+      invoke :'puma:hard_restart'
     end
   end
 end

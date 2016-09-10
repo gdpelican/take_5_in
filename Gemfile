@@ -19,4 +19,6 @@ end
 
 group :development do
   gem 'mina', '~> 0.3.8'
+  gem 'mina-nginx'
+  gem 'mina-puma'
 end

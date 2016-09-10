@@ -1,5 +1,7 @@
 require 'mina/bundler'
 require 'mina/git'
+require 'mina/nginx'
+require 'mina/puma'
 require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 # Basic settings:
@@ -9,6 +11,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, "#{ENV['TAKE_FIVE_USERNAME']}:#{ENV['TAKE_FIVE_PASSWORD']}@take-five.in"
+set :application, 'take_five_in'
 set :deploy_to, '/var/www/take_five_in'
 set :repository, 'https://github.com/gdpelican/take_5_in.git'
 set :branch, 'master'
@@ -68,10 +71,12 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'bundle:install'
     invoke :'deploy:link_shared_paths'
-    # queue  'npm install'
+    queue  'npm install'
     queue  'npm run app:production'
     queue  'npm run admin:production'
     invoke :'deploy:cleanup'
+    invoke :'puma:restart'
+    invoke :'nginx:restart'
 
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"

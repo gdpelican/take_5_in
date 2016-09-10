@@ -98,6 +98,11 @@ GEM
     mina (0.3.8)
       open4 (~> 1.3.4)
       rake
+    mina-nginx (0.0.1)
+      mina (~> 0)
+    mina-puma (0.3.1)
+      mina
+      puma (>= 2.13)
     mini_magick (4.5.1)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -125,6 +130,8 @@ DEPENDENCIES
   dotenv!
   json
   mina (~> 0.3.8)
+  mina-nginx
+  mina-puma
   mini_magick
   puma
   tilt

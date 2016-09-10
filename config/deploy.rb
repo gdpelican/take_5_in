@@ -1,7 +1,6 @@
 require 'mina/bundler'
 require 'mina/git'
 require 'mina/rvm'    # for rvm support. (http://rvm.io)
-require 'mina/npm'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -15,13 +14,11 @@ set :repository, 'https://github.com/gdpelican/take_5_in.git'
 set :branch, 'master'
 
 # For system-wide RVM install.
-set :rvm_path, '/usr/local/rvm/bin/rvm'
-
-set :npm_options, ''
+set :rvm_path, '/usr/local/rvm/scripts/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log']
+set :shared_paths, ['log']
 
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
@@ -71,6 +68,7 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'bundle:install'
     invoke :'deploy:link_shared_paths'
+    # queue  'npm install'
     queue  'npm run app:production'
     queue  'npm run admin:production'
     invoke :'deploy:cleanup'

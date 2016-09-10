@@ -18,6 +18,5 @@ group :development, :test do
 end
 
 group :development do
-  gem 'mina'
-  gem 'mina-npm'
+  gem 'mina', '~> 0.3.8'
 end

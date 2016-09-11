@@ -52,7 +52,7 @@ export default React.createClass({
              <HeaderBadge className={this.state.status + ' header-over-image header-badge'} />
              {content}
              <a onClick={this.scroll} className="header-see-more">
-               <span>See more</span>
+               <span>Let&#39;s go!</span>
                <FontAwesome className={this.state.status + ' header-scroll-indicator'} name="angle-down" />
              </a>
              {navigator}

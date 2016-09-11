@@ -298,6 +298,17 @@ html, body {
   align-items: center;
   justify-content: center;
   display: block;
+}
+
+.preview-overlay .loading {
+  margin: 40vh auto;
+}
+
+.preview-overlay .loading div {
+  background-color: white;
+}
+
+.preview-header, .preview-body, .preview-footer {
   animation: slideIn 0.3s;
 }
 

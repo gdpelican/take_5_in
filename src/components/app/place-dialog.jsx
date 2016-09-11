@@ -1,6 +1,7 @@
 import React           from 'react'
 import Spinner         from 'react-spinkit'
 import FontAwesome     from 'react-fontawesome'
+import Loading         from '../common/loading'
 import { Space, Text } from 'rebass'
 
 
@@ -10,15 +11,41 @@ export default React.createClass({
   },
 
   render() {
-    if (!this.props.open) { return null }
+    if (!this.props.open) {
+      return null
+    } else if (this.state.loading) {
+      return this.loadingContent()
+    } else {
+      return this.displayContent()
+    }
+  },
+
+  loadingContent() {
     return <div className="preview-overlay">
-      <div className="preview-header">
-        <div className="preview-title">{this.props.place.name}, {this.props.place.subname}</div>
-        <FontAwesome onClick={this.props.close} name="times" />
-      </div>
-      <div className="preview-body">{[this.prev(),this.preview(),this.next()]}</div>
-      <div className="preview-footer">{this.thumbs()}</div>
-    </div>
+             <Loading />
+             {this.props.place.photos.map((urls, index) => {
+               if (index == 0) {
+                 return <img className="hidden" onLoad={this.imageLoaded} src={urls.view} key={urls.view} />
+               } else {
+                 return <img className="hidden" src={urls.view} key={urls.view} />
+               }
+             })}
+           </div>
+  },
+
+  displayContent() {
+    return <div className="preview-overlay">
+             <div className="preview-header">
+               <div className="preview-title">{this.props.place.name}, {this.props.place.subname}</div>
+               <FontAwesome onClick={this.props.close} name="times" />
+             </div>
+             <div className="preview-body">{[this.prev(),this.preview(),this.next()]}</div>
+             <div className="preview-footer">{this.thumbs()}</div>
+           </div>
+  },
+
+  imageLoaded() {
+    this.setState({selected: 0, loading: false})
   },
 
   prev() {
@@ -33,18 +60,14 @@ export default React.createClass({
 
   preview() {
     let url = this.selectedImage().view
-    if (this.state.loading) {
-      return <img className="hidden" onLoad={this.imageLoaded} key={url} src={url} />
-    } else {
-      return <div key={url} className="photo-preview">
-               <img src={url} />
-               {this.selectedCaption()}
-             </div>
-    }
+    return <div key={url} className="photo-preview">
+             <img src={url} />
+             {this.selectedCaption()}
+           </div>
   },
 
   select(index) {
-    return () => { this.setState({selected: index, loading: true}) }
+    return () => { this.setState({selected: index}) }
   },
 
   selectedImage() {
@@ -65,9 +88,5 @@ export default React.createClass({
         return <img onClick={this.select(index)} key={urls.view} src={urls.thumb} />
       }
     })
-  },
-
-  imageLoaded() {
-    this.setState({key: Math.random(), loading: false})
   }
 })

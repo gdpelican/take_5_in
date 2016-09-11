@@ -50,6 +50,7 @@ class Config
     {
       index:    index,
       url:      send(:"background_#{index}").url(:background),
+      thumb:    send(:"background_#{index}").url(:thumb),
       title:    send(:"background_title_#{index}"),
       subtitle: send(:"background_subtitle_#{index}")
     }

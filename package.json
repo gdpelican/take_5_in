@@ -21,6 +21,7 @@
     "babel-preset-react": "^6.11.1",
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
+    "concurrently": "^2.2.0",
     "cssify": "^1.0.3",
     "envify": "^3.4.1",
     "gulp": "^3.9.1",
@@ -55,8 +56,10 @@
   "scripts": {
     "app": "browserify --extension=jsx ./src/app.jsx   > ./dist/js/app.js",
     "admin": "browserify --extension=jsx ./src/admin.jsx > ./dist/js/admin.js",
+    "compile": "concurrently 'npm run app' 'npm run admin'",
     "app:production": "NODE_ENV=production browserify -p [minifyify --no-map] --full-paths --extension=jsx ./src/app.jsx   > ./dist/js/app.js",
     "admin:production": "NODE_ENV=production browserify -p [minifyify --no-map] --extension=jsx ./src/admin.jsx > ./dist/js/admin.js",
+    "compile:production": "concurrently 'npm run app:production' 'npm run admin:production'",
     "watch": "npm-watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

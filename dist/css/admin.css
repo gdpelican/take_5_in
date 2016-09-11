@@ -39,3 +39,9 @@
   min-width: 200px;
   flex-grow: 2;
 }
+
+.nested-field-inputs {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 15px;
+}

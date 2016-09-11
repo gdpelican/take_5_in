@@ -90,11 +90,12 @@ class Place
 
   def json
     {
-      id:       self.id,
-      name:     self.name,
-      subname:  self.subname,
-      coverUrl: self.cover.url(:cover),
-      photos:   self.photos
+      id:         self.id,
+      name:       self.name,
+      subname:    self.subname,
+      coverUrl:   self.cover.url(:cover),
+      coverThumb: self.cover.url(:thumb),
+      photos:     self.photos
     }
   end
 end

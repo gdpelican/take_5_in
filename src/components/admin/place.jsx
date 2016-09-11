@@ -13,9 +13,13 @@ export default React.createClass({
 
     if (this.state.visible) {
       let photo_fields = [1,2,3,4,5].map(function(index) {
+        let photo = place.photos[index-1] || {}
         return <div key={`photo_${index}`} className="nested-field">
-                 <Input label={`Photo ${index}:`} name={`photo_${index}`} type="file" />
-                 <Textarea label={`Caption ${index}:`} defaultValue={(place.photos[index] || {}).caption} name={`caption_${index}`} />
+                 <img src={photo.thumb} />
+                 <div className="nested-field-inputs">
+                   <Input label={`Photo ${index}:`} name={`photo_${index}`} type="file" />
+                   <Textarea label={`Caption ${index}:`} defaultValue={photo.caption} name={`caption_${index}`} />
+                 </div>
                </div>
       })
 

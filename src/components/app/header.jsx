@@ -26,7 +26,7 @@ export default React.createClass({
   },
 
   imageLoaded(index) {
-    return function() {
+    return () => {
       if (index != 1) { return }
       this.setState({ selected: 1, status: 'ready' })
     }
@@ -65,7 +65,7 @@ export default React.createClass({
 
   backgroundImages() {
     return this.backgrounds().map((b) => {
-      return <img onLoad={this.imageLoaded} src={b.url} key={b.index} style={{display: 'none'}} />
+      return <img onLoad={this.imageLoaded(b.index)} src={b.url} key={b.index} style={{display: 'none'}} />
     })
   },
 

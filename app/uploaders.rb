@@ -2,6 +2,11 @@ require 'carrierwave/datamapper'
 
 class Uploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  process :auto_orient
+
+  def auto_orient
+    manipulate! { |img| img.auto_orient }
+  end
 
   def store_dir
     [:dist, :img, :uploads, upload_directory, mounted_as].join('/')

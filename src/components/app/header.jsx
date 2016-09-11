@@ -51,12 +51,16 @@ export default React.createClass({
     return <div className="header">
              <HeaderBadge className={this.state.status + ' header-over-image header-badge'} />
              {content}
-             <a href="#places" className="header-see-more">
+             <a onClick={this.scroll} className="header-see-more">
                <span>See more</span>
                <FontAwesome className={this.state.status + ' header-scroll-indicator'} name="angle-down" />
              </a>
              {navigator}
            </div>
+  },
+
+  scroll() {
+    Scroll.animateScroll.scrollTo(document.querySelector('#places').offsetTop)
   },
 
   selectBackground(selected) {

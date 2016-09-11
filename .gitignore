@@ -1,7 +1,6 @@
 .git
 .byebug_history
 node_modules/
-dist/js/*.js
 dist/img/places/*
 dist/img/uploads/*
 log/*.log

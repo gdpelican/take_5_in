@@ -77,9 +77,6 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'bundle:install'
     invoke :'deploy:link_shared_paths'
-    queue  'npm install'
-    queue  'npm run app:production'
-    queue  'npm run admin:production'
     invoke :'deploy:cleanup'
 
     to :launch do

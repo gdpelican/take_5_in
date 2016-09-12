@@ -85,7 +85,7 @@ export default React.createClass({
         return <img src={urls.view} key={urls.view} />
       }
     })
-  }
+  },
 
   thumbs() {
     return this.props.place.photos.map((urls, index) => {

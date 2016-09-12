@@ -7,7 +7,7 @@ export default React.createClass({
   },
 
   render() {
-    let place = this.props.place || {}
+    let place = this.props.place || { photos: [] }
     let style = place.id ? { backgroundImage: `url(${place.coverUrl})` } : {}
     var contents
 

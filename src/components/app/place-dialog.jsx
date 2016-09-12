@@ -23,16 +23,10 @@ export default React.createClass({
   loadingContent() {
     return <div className="preview-overlay">
              <Loading />
-             {this.props.place.photos.map((urls, index) => {
-               if (index == 0) {
-                 return <img className="hidden" onLoad={this.imageLoaded} src={urls.view} key={urls.view} />
-               } else {
-                 return <img className="hidden" src={urls.view} key={urls.view} />
-               }
-             })}
-             {this.props.place.photos.map((urls, index) => {
-               return <img className="hidden" src={urls.thumb} key={urls.thumb} />
-             })}
+             <div className="hidden">
+               {this.previews()}
+               {this.thumbs()}
+             </div>
            </div>
   },
 
@@ -82,6 +76,16 @@ export default React.createClass({
     if (!caption) { return null }
     return <Text>{caption}</Text>
   },
+
+  previews() {
+    return this.props.place.photos.map((urls, index) => {
+      if (index == 0) {
+        return <img onLoad={this.imageLoaded} src={urls.view} key={urls.view} />
+      } else {
+        return <img src={urls.view} key={urls.view} />
+      }
+    })
+  }
 
   thumbs() {
     return this.props.place.photos.map((urls, index) => {

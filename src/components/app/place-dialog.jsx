@@ -30,6 +30,9 @@ export default React.createClass({
                  return <img className="hidden" src={urls.view} key={urls.view} />
                }
              })}
+             {this.props.place.photos.map((urls, index) => {
+               return <img className="hidden" src={urls.thumb} key={urls.thumb} />
+             })}
            </div>
   },
 

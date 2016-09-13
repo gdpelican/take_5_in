@@ -32,6 +32,46 @@ html, body {
   background: url('../img/backgrounds/dark.png');
 }
 
+/* the 'sorry mom' section: */
+.bm-menu {
+  overflow: hidden !important;
+}
+
+.bm-cross {
+  background: #444 !important;
+}
+
+#wrap[style*='transform-style:'] {
+  transform: translate3d(200px, 0px, -800px) rotateY(-20deg) !important;
+}
+/* end shame */
+
+.sidebar-content {
+  margin: 25px 15px 15px;
+}
+
+.sidebar-content h2 {
+  margin: 0;
+  font-family: 'Bad Script';
+  font-size: 20px;
+}
+
+.sidebar-content p {
+  margin: 0;
+  font-family: 'Yanone Kaffeesatz';
+  font-size: 17px;
+  line-height: 22px;
+  letter-spacing: 1px;
+}
+
+.sidebar-content hr {
+  margin: 20px 0;
+}
+
+.sidebar-content a {
+  color: black;
+}
+
 .header {
   position: relative;
   height: 100vh;
@@ -45,11 +85,6 @@ html, body {
   font-family: 'Bad Script', sans-serif;
   background: url('../img/backgrounds/dark.png');
   box-shadow: 0 0 5px black;
-}
-
-// grr, this is why inline styling sucks.
-#wrap[style*='transform-style:'] {
-  transform: translate3d(200px, 0px, -800px) rotateY(-20deg) !important;
 }
 
 .bm-burger-button {

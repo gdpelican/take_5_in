@@ -15,7 +15,7 @@ export default React.createClass({
                 </a>
               </div>
               <div className="get-in-touch">
-                <a href="mailto:james.kiesel@gmail.com"><FontAwesome name="envelope" /></a>
+                <a href="mailto:james@take-five.in"><FontAwesome name="envelope" /></a>
                 <a href="https://www.facebook.com/james.kiesel" target="_blank"><FontAwesome name="facebook" /></a>
                 <a href="https://github.com/gdpelican" target="_blank"><FontAwesome name="github" /></a>
                 <a href="https://twitter.com/gdpelican" target="_blank"><FontAwesome name="twitter" /></a>

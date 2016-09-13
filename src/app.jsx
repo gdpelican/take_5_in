@@ -1,8 +1,13 @@
-import React           from 'react'
-import ReactDOM        from 'react-dom'
-import domready        from 'domready'
-import Body            from './components/app/body'
+import React    from 'react'
+import ReactDOM from 'react-dom'
+import domready from 'domready'
+import Sidebar  from './components/app/sidebar'
+import Content  from './components/app/content'
 
 domready(function() {
-  ReactDOM.render(<Body />, document.getElementById('app'))
+  ReactDOM.render(
+    <div>
+      <Sidebar />
+      <Content />
+    </div>, document.getElementById('app'))
 })

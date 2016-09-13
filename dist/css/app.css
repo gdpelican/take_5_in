@@ -389,6 +389,7 @@ html, body {
   margin-top: 5px;
   max-width: 100%;
   box-shadow: 0 0 5px 1px black;
+  border-radius: 5px;
 }
 
 .preview-body .fa {
@@ -424,6 +425,7 @@ html, body {
   height: 125px;
   margin: 5px;
   border: 1px solid white;
+  border-radius: 5px;
   box-shadow: 0 0 5px 1px black;
 }
 

@@ -21,7 +21,7 @@ export default React.createClass({
                <hr />
                <h2>Want to hear more?</h2>
                <p>
-                 Like something you see, want to hear more about a particular story or place, or use one of these pictures for something?
+                 Like something you see, want to hear more about a particular story or place, or want me to build you a website like this?
                  Come say hi! You can reach me <a href="http://www.twitter.com/gdpelican">on twitter</a> or at <a href="mailto:james@take-five.in">james@take-five.in</a>
                </p>
              </div>

@@ -83,7 +83,7 @@ class Admin < Cuba
 
   def place_params
     resource_params([:name, :subname, :cover,
-                     :caption_1, :caption_2, :caption_3, :caption_4, :caption_5,
+                     :story_1, :story_2, :story_3, :story_4, :story_5,
                      :photo_1, :photo_2, :photo_3, :photo_4, :photo_5])
   end
 

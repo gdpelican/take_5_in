@@ -72,16 +72,16 @@ class Place
   mount_uploader :photo_4, PhotoUploader
   mount_uploader :photo_5, PhotoUploader
 
-  property :caption_1, String
-  property :caption_2, String
-  property :caption_3, String
-  property :caption_4, String
-  property :caption_5, String
+  property :story_1, String
+  property :story_2, String
+  property :story_3, String
+  property :story_4, String
+  property :story_5, String
 
   def json_for_photo(index)
     photo = send(:"photo_#{index}")
     return if photo.file.nil?
-    { view: photo.url(:photo), thumb: photo.url(:thumb), caption: send(:"caption_#{index}")  }
+    { view: photo.url(:photo), thumb: photo.url(:thumb), story: send(:"story_#{index}")  }
   end
 
   def photos

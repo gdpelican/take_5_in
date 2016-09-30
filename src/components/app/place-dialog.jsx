@@ -59,7 +59,7 @@ export default React.createClass({
     let url = this.selectedImage().view
     return <div key={url} className="photo-preview">
              <img src={url} />
-             {this.selectedCaption()}
+             {this.selectedStory()}
            </div>
   },
 
@@ -71,10 +71,10 @@ export default React.createClass({
     return this.props.place.photos[this.state.selected] || {}
   },
 
-  selectedCaption() {
-    let caption = (this.selectedImage() || {}).caption
-    if (!caption) { return null }
-    return <Text>{caption}</Text>
+  selectedStory() {
+    let story = (this.selectedImage() || {}).story
+    if (!story) { return null }
+    return <Text>{story}</Text>
   },
 
   previews() {

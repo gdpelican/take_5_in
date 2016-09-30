@@ -1,4 +1,5 @@
 import React           from 'react'
+import ReactMarkdown   from 'react-markdown'
 import Spinner         from 'react-spinkit'
 import FontAwesome     from 'react-fontawesome'
 import Loading         from '../common/loading'
@@ -74,7 +75,7 @@ export default React.createClass({
   selectedStory() {
     let story = (this.selectedImage() || {}).story
     if (!story) { return null }
-    return <Text>{story}</Text>
+    return <ReactMarkdown className="photo-preview-wrapper" source={story} />
   },
 
   previews() {

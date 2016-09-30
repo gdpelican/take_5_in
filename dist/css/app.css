@@ -404,13 +404,14 @@ html, body {
   position: relative;
 }
 
-.photo-preview p {
+.photo-preview-wrapper {
   position: absolute;
-  bottom: 0;
-  padding: 15px;
-  background: rgba(0,0,0,0.4);
+  bottom: 4px;
+  padding: 5px 10px;
+  background: rgba(230,230,255,.5);
   width: 100%;
-  color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .preview-footer {

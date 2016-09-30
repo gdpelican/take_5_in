@@ -72,11 +72,11 @@ class Place
   mount_uploader :photo_4, PhotoUploader
   mount_uploader :photo_5, PhotoUploader
 
-  property :story_1, String
-  property :story_2, String
-  property :story_3, String
-  property :story_4, String
-  property :story_5, String
+  property :story_1, String, length: 4000
+  property :story_2, String, length: 4000
+  property :story_3, String, length: 4000
+  property :story_4, String, length: 4000
+  property :story_5, String, length: 4000
 
   def json_for_photo(index)
     photo = send(:"photo_#{index}")

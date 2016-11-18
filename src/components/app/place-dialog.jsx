@@ -8,7 +8,7 @@ import { Space, Text } from 'rebass'
 
 export default React.createClass({
   getInitialState() {
-    return { selected: 0, loading: true }
+    return { selected: 0, loading: true, minified: false }
   },
 
   render() {
@@ -59,23 +59,38 @@ export default React.createClass({
   preview() {
     let url = this.selectedImage().view
     return <div key={url} className="photo-preview">
-             <img src={url} />
+             <img onClick={this.showImage} className={this.state.minified ? 'photo-preview-visible minified' : 'photo-preview-visible'} src={url} />
+             <img className="photo-preview-hidden" src={url} />
+             {this.selectedStoryIcon()}
              {this.selectedStory()}
            </div>
   },
 
   select(index) {
-    return () => { this.setState({selected: index}) }
+    return () => { this.setState({selected: index, minified: false}) }
   },
 
   selectedImage() {
     return this.props.place.photos[this.state.selected] || {}
   },
 
+  selectedStoryIcon() {
+    if (!this.selectedStory() || this.state.minified) { return }
+    return <FontAwesome key="info" onClick={this.showStory} name="question-circle" />
+  },
+
   selectedStory() {
     let story = (this.selectedImage() || {}).story
     if (!story) { return null }
     return <ReactMarkdown className="photo-preview-wrapper" source={story} />
+  },
+
+  showStory() {
+    this.setState({ minified: true })
+  },
+
+  showImage() {
+    this.setState({ minified: false })
   },
 
   previews() {

@@ -392,12 +392,24 @@ html, body {
   border-radius: 5px;
 }
 
-.preview-body .fa {
+.preview-body .fa.fa-angle-left,
+.preview-body .fa.fa-angle-right {
   color: white;
   cursor: pointer;
   margin: 0 20px;
   font-size: 2.5em;
-  text-shadow: 0 0 5px black;
+  text-shadow: 0 0 2px black;
+}
+
+.preview-body .fa.fa-question-circle {
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  font-size: 1.5em;
+  text-shadow: 0 0 3px black;
+  position: absolute;
+  top: 8px;
+  left: 5px;
 }
 
 .photo-preview {
@@ -406,12 +418,34 @@ html, body {
 
 .photo-preview-wrapper {
   position: absolute;
+  z-index: -1;
   bottom: 4px;
-  padding: 5px 10px;
-  background: rgba(230,230,255,.5);
+  top: 4px;
+  padding: 5px 10px 5px 110px;
   width: 100%;
   box-sizing: border-box;
   border-radius: 5px;
+  background: url('../img/backgrounds/light.png');
+}
+
+.photo-preview-visible {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  width: 100px;
+  transition: 0.25s ease-in all;
+}
+
+.photo-preview-visible.minified {
+  top: -15px;
+  left: -15px;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.photo-preview-hidden {
+  visibility: hidden;
 }
 
 .preview-footer {

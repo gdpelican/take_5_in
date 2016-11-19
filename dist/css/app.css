@@ -298,15 +298,25 @@ html, body {
   box-shadow: 2px 2px 3px black;
 }
 
-@media (min-width: 530px) {
+@media screen and (min-device-width: 0px) and (max-device-width: 832px) {
+  .bm-burger-button { width: 50px; height: 40px; }
+  .header-badge .loading { margin: 25px auto 0; }
+  .preview-body .fa-question-circle,
+  .background-navigator .fa { font-size: 2.5em !important; margin: 0 10px; }
+  .currently-in { margin-bottom: 10px; }
+  .preview-header .fa-times { font-size: 1.75em; }
+  .header-badge { margin-top: 10vh; }
+}
+
+@media screen and (min-device-width: 530px) {
   .place { flex-basis: calc(50% - 4px); }
 }
 
-@media (min-width: 832px) {
+@media screen and (min-device-width: 832px) {
   .place { flex-basis: calc(33% - 4px); }
 }
 
-@media (min-width: 1250px) {
+@media screen and (min-width: 1250px) and (min-device-width: 1250px) {
   .place { flex-basis: calc(25% - 4px); }
 }
 

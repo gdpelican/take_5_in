@@ -21,6 +21,15 @@ export default React.createClass({
     }
   },
 
+  componentDidUpdate() {
+    let $body = document.querySelector('body')
+    if (this.props.open) {
+      $body.style.overflow = 'hidden'
+    } else {
+      $body.style.overflow = 'auto'
+    }
+  },
+
   loadingContent() {
     return <div className="preview-overlay">
              <Loading />

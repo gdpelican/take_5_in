@@ -409,6 +409,7 @@ html, body {
 
 .preview-body .fa.fa-question-circle {
   color: white;
+  z-index: 1;
   cursor: pointer;
   margin: 0;
   font-size: 1.5em;
@@ -425,7 +426,7 @@ html, body {
 
 .photo-preview-wrapper {
   position: absolute;
-  z-index: -1;
+  overflow-y: scroll;
   bottom: 4px;
   top: 4px;
   padding: 0 10px 5px 65px;
@@ -437,6 +438,7 @@ html, body {
 }
 
 .photo-preview-markdown {
+  padding: 30px 0;
   height: 100%;
   display: flex;
   display: -webkit-flex;
@@ -448,6 +450,7 @@ html, body {
 
 .photo-preview-visible {
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   min-width: 100%;

@@ -1,6 +1,7 @@
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Bad+Script');
 @import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
 @keyframes fadeIn {
   from {
@@ -389,7 +390,12 @@ html, body {
   margin-top: 5px;
   max-width: 100%;
   box-shadow: 0 0 5px 1px black;
-  border-radius: 5px;
+  border-radius: 2px;
+}
+
+.preview-body .angle-spacer {
+  margin: 0 20px;
+  width: 48px;
 }
 
 .preview-body .fa.fa-angle-left,
@@ -414,6 +420,7 @@ html, body {
 
 .photo-preview {
   position: relative;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .photo-preview-wrapper {
@@ -421,11 +428,22 @@ html, body {
   z-index: -1;
   bottom: 4px;
   top: 4px;
-  padding: 5px 10px 5px 110px;
+  padding: 0 10px 5px 65px;
   width: 100%;
   box-sizing: border-box;
   border-radius: 5px;
   background: url('../img/backgrounds/light.png');
+  box-shadow: 0 0 5px 1px black;
+}
+
+.photo-preview-markdown {
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: center;
+  -webkit-justify-content: center;
 }
 
 .photo-preview-visible {
@@ -439,7 +457,7 @@ html, body {
 
 .photo-preview-visible.minified {
   top: -15px;
-  left: -15px;
+  left: -50px;
   min-width: 0;
   cursor: pointer;
 }
@@ -459,13 +477,12 @@ html, body {
   cursor: pointer;
   height: 125px;
   margin: 5px;
-  border: 1px solid white;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 0 0 5px 1px black;
 }
 
 .preview-footer img.selected {
-  border: 2px solid #cccc66;
+  border: 1px solid white;
 }
 
 

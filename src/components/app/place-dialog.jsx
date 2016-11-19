@@ -3,7 +3,7 @@ import ReactMarkdown   from 'react-markdown'
 import Spinner         from 'react-spinkit'
 import FontAwesome     from 'react-fontawesome'
 import Loading         from '../common/loading'
-import { Space, Text } from 'rebass'
+import { Text }        from 'rebass'
 
 
 export default React.createClass({
@@ -47,12 +47,12 @@ export default React.createClass({
   },
 
   prev() {
-    if (this.state.selected == 0) { return <Space key="prev" x={4} /> }
+    if (this.state.selected == 0) { return <div className="angle-spacer" key="prev" /> }
     return <FontAwesome onClick={this.select(this.state.selected-1)} key="prev" name="angle-left" />
   },
 
   next() {
-    if (this.state.selected == this.props.place.photos.length - 1) { return <Space key="next" x={4} /> }
+    if (this.state.selected == this.props.place.photos.length - 1) { return <div className="angle-spacer" key="prev" /> }
     return <FontAwesome onClick={this.select(this.state.selected+1)} key="next" name="angle-right" />
   },
 
@@ -82,7 +82,9 @@ export default React.createClass({
   selectedStory() {
     let story = (this.selectedImage() || {}).story
     if (!story) { return null }
-    return <ReactMarkdown className="photo-preview-wrapper" source={story} />
+    return <div className="photo-preview-wrapper">
+             <ReactMarkdown className="photo-preview-markdown" source={story} />
+           </div>
   },
 
   showStory() {

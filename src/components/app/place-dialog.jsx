@@ -61,7 +61,7 @@ export default React.createClass({
   },
 
   next() {
-    if (this.state.selected == this.props.place.photos.length - 1) { return <div className="angle-spacer" key="prev" /> }
+    if (this.state.selected == this.props.place.photos.length - 1) { return <div className="angle-spacer" key="next" /> }
     return <FontAwesome onClick={this.select(this.state.selected+1)} key="next" name="angle-right" />
   },
 

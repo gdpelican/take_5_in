@@ -6,3 +6,4 @@ dist/img/uploads/*
 log/*.log
 .byebug_history
 uploads/*
+.DS_Store

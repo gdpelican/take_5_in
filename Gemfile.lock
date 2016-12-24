@@ -226,6 +226,9 @@ GEM
       rake
     mina-nginx (0.0.1)
       mina (~> 0)
+    mina-puma (0.3.1)
+      mina
+      puma (>= 2.13)
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
@@ -233,6 +236,7 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     open4 (1.3.4)
+    puma (3.6.0)
     rack (2.0.1)
     rake (11.2.2)
     rbvmomi (1.9.4)
@@ -264,7 +268,9 @@ DEPENDENCIES
   mime-types
   mina (~> 0.3.8)
   mina-nginx
+  mina-puma
   mini_magick
+  puma
   tilt
 
 RUBY VERSION

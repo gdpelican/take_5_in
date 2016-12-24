@@ -27,14 +27,11 @@ class Config
   property :background_subtitle_5, String
 
   def self.upsert(params)
-    puts params
     instance.update(params)
   end
 
   def self.json
-    {
-      backgrounds: instance.backgrounds,
-    }
+    { backgrounds: instance.backgrounds }
   end
 
   def self.instance
@@ -80,7 +77,7 @@ class Place
 
   def json_for_photo(index)
     photo = send(:"photo_#{index}")
-    return if photo.file.nil?
+    return {} if photo.file.nil?
     { view: photo.url(:photo), thumb: photo.url(:thumb), story: send(:"story_#{index}")  }
   end
 

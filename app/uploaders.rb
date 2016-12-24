@@ -19,6 +19,7 @@ class BackgroundUploader < CarrierWave::Uploader::Base
     :config
   end
 
+  storage :fog
   process :auto_orient
   version(:thumb) { process resize_to_fill: [125, 125] }
   version(:background) { process resize_to_limit: [1750, 1750] }
@@ -31,6 +32,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
     model.id
   end
 
+  storage :fog
   process :auto_orient
   version(:thumb) { process resize_to_fill: [125, 125] }
   version(:photo) { process resize_to_limit: [1250, 1250] }
@@ -43,6 +45,7 @@ class CoverUploader < CarrierWave::Uploader::Base
     model.id
   end
 
+  storage :fog
   process :auto_orient
   version(:thumb) { process resize_to_fill: [125, 125] }
   version(:cover) { process resize_to_fill: [700, 300] }

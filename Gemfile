@@ -6,7 +6,8 @@ gem 'tilt'
 gem 'datamapper'
 gem 'dm-postgres-adapter'
 gem 'carrierwave-datamapper', git: 'https://github.com/carrierwaveuploader/carrierwave-datamapper.git' # also ??
-gem 'fog-aws'
+gem 'fog'
+gem 'mime-types'
 
 gem 'mini_magick'
 gem 'json'

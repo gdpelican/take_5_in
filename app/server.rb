@@ -1,3 +1,6 @@
+require './app/initializers'
+require './app/models'
+
 require 'cuba'
 require 'cuba/render'
 require 'cuba/safe'

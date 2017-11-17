@@ -1,4 +1,5 @@
 .git
+.bundle
 .byebug_history
 node_modules/
 dist/img/places/*
@@ -7,3 +8,4 @@ log/*.log
 .byebug_history
 uploads/*
 .DS_Store
+.env

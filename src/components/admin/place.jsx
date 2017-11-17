@@ -18,7 +18,7 @@ export default React.createClass({
                  <img src={photo.thumb} />
                  <div className="nested-field-inputs">
                    <Input label={`Photo ${index}:`} name={`photo_${index}`} type="file" />
-                   <Textarea label={`Story ${index}:`} defaultValue={photo.story} name={`story_${index}`} />
+                   <Textarea label={`Story ${index}:`} defaultValue={photo.story} name={`story_${index}`} rows="6" />
                  </div>
                </div>
       })

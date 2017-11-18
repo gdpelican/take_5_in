@@ -44,8 +44,8 @@ export default React.createClass({
              <div className="nested-field-container">{background_fields}</div>
              <Button theme="primary" rounded type="submit" className="config-submit">Save</Button>
              <FacebookLogin
-               scope="publish_pages,manage_pages"
-               appId={config.facebook_app_id}
+               appId={config.facebook.app_id}
+               scope={config.facebook.scopes}
                autoLoad={true}
                callback={this.storeAccessToken} />
            </form>

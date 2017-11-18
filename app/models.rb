@@ -31,7 +31,13 @@ class Config
   end
 
   def self.json
-    { backgrounds: instance.backgrounds, facebook_app_id: ENV['FACEBOOK_APP_ID'] }
+    {
+      backgrounds: instance.backgrounds,
+      facebook: {
+        app_id: ENV['FACEBOOK_APP_ID'],
+        scopes: "publish_pages,manage_pages,user_photos,publish_actions"
+      }
+    }
   end
 
   def self.instance

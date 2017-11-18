@@ -6,41 +6,45 @@ module Integrations
     @@access_token = nil
 
     def self.store_token!(token = nil)
-      # get long term token from short term one
-      user_token = get("oauth/access_token", {
-        grant_type:        'fb_exchange_token',
-        client_id:         ENV['FACEBOOK_APP_ID'],
-        client_secret:     ENV['FACEBOOK_APP_SECRET'],
-        fb_exchange_token: token || ENV['FACEBOOK_TEST_TOKEN']
-      }, 'access_token')
 
+      # get page token
       page_token = get(ENV['FACEBOOK_PAGE_ID'], {
         fields: :access_token,
-        access_token: user_token
+        access_token: token
       }, 'access_token')
 
       @@access_token = page_token if page_token
       page_token.present?
     end
 
-    def self.post!(place)
+    def self.post!(place, token)
       return if place.synced_with_facebook
+
+      page_token = get(ENV['FACEBOOK_PAGE_ID'], {
+        fields: :access_token,
+        access_token: token
+      }, 'access_token')
 
       # create an album
       album_id = post("#{ENV['FACEBOOK_PAGE_ID']}/albums", {
-        location: place.full_name,
-        name:     place.full_name,
+        location:     place.full_name,
+        name:         place.full_name,
+        access_token: page_token
       }, 'id')
 
       # upload cover photo
-      post "#{album_id}/photos", url: place.cover.url(:cover)
+      post("#{album_id}/photos", {
+        url: place.cover.url(:cover),
+        access_token: page_token
+      })
 
       # upload pictures
       (1..5).each do |index|
-        post "#{album_id}/photos", {
-          url:     place.send(:"photo_#{index}").url(:photo),
-          message: place.send(:"story_#{index}")
-        }
+        post("#{album_id}/photos", {
+          url:          place.send(:"photo_#{index}").url(:photo),
+          message:      place.send(:"story_#{index}"),
+          access_token: page_token
+        })
       end
       place.update(synced_with_facebook: true)
     end

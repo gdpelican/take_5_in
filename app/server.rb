@@ -78,16 +78,9 @@ class Admin < Cuba
       redirect { Place.get(id).destroy }
     end
 
-    # POST save token from facebook
-    on post, 'facebook/:token' do |token|
-      puts "Hi!"
-      Integrations::Facebook.store_token! token
-      res.write({ status: :ok }.to_json)
-    end
-
     # POST place to facebook
-    on post, 'facebook/places/:id' do |id|
-      Integrations::Facebook.post! Place.get(id)
+    on post, 'facebook/places/:id/:token' do |id, token|
+      Integrations::Facebook.post! Place.get(id), token
       res.write({ status: :ok }.to_json)
     end
   end

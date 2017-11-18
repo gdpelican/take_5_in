@@ -31,13 +31,7 @@ class Config
   end
 
   def self.json
-    {
-      backgrounds: instance.backgrounds,
-      facebook: {
-        app_id: ENV['FACEBOOK_APP_ID'],
-        scopes: "publish_pages,manage_pages,user_photos,publish_actions"
-      }
-    }
+    { backgrounds: instance.backgrounds }
   end
 
   def self.instance
@@ -105,8 +99,10 @@ class Place
       coverUrl:   self.cover.url(:cover),
       coverThumb: self.cover.url(:thumb),
       photos:     self.photos,
-      synced: {
-        facebook: self.synced_with_facebook
+      facebook: {
+        synced:   self.synced_with_facebook,
+        app_id:   ENV['FACEBOOK_APP_ID'],
+        scopes:   "publish_pages,manage_pages,user_photos,publish_actions"
       }
     }
   end

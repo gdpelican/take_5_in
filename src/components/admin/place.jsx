@@ -1,4 +1,6 @@
-import React     from 'react'
+import React           from 'react'
+import xhr             from 'xhr'
+import FacebookLogin   from 'react-facebook-login'
 import { Input, Textarea, Button, Space } from 'rebass'
 
 export default React.createClass({
@@ -8,8 +10,10 @@ export default React.createClass({
 
   render() {
     let place = this.props.place || { photos: [] }
+    let config = this.props.config
     let style = place.id ? { backgroundImage: `url(${place.coverUrl})` } : {}
     var contents
+    var sync
 
     if (this.state.visible) {
       let photo_fields = [1,2,3,4,5].map(function(index) {
@@ -22,6 +26,14 @@ export default React.createClass({
                  </div>
                </div>
       })
+
+      if (!place.facebook.synced) {
+        sync = <FacebookLogin
+                 textButton="Sync with facebook"
+                 appId={place.facebook.app_id}
+                 scope={place.facebook.scopes}
+                 callback={this.syncToFacebook} />
+      }
 
       contents = <form method="post" encType="multipart/form-data" action={"/admin/places/" + (place.id || "")} className="place-form">
                    <div className="place-form-field">
@@ -37,7 +49,7 @@ export default React.createClass({
                    <div className="place-form-field">
                      <Button theme="primary" rounded type="submit" className="place-submit">Save</Button>
                      <Space x={1} />
-                     <Button onClick={this.postToFacebook} theme="secondary" rounded disabled={place.synced.facebook}>Post to Facebook</Button>
+                     {sync}
                      <Space x={1} />
                      <Button onClick={this.toggleForm} theme="secondary" rounded>Cancel</Button>
                    </div>
@@ -52,11 +64,13 @@ export default React.createClass({
            </li>
   },
 
-  postToFacebook() {
-    xhr.post(`${window.location.origin}/admin/facebook/places/${this.props.place.id}`, (err, res, body) => {
-      if (err) { console.log(err); return }
-      this.props.place.synced.facebook = true
-    })
+  syncToFacebook(response) {
+    if (response.accessToken) {
+      xhr.post(`${window.location.origin}/admin/facebook/places/${this.props.place.id}/${response.accessToken}`, console.log)
+      this.setState({ syncedToFacebook: true })
+    } else {
+      console.log('facebook login failed!')
+    }
   },
 
   toggleForm(e) {

@@ -2,7 +2,6 @@ import React     from 'react'
 import xhr       from 'xhr'
 import Loading   from '../common/loading'
 import { Textarea, Input, Button } from 'rebass'
-import FacebookLogin   from 'react-facebook-login'
 
 export default React.createClass({
   getInitialState() {
@@ -14,17 +13,6 @@ export default React.createClass({
       if (err) { console.log(err); return }
       this.setState({config: JSON.parse(body), loading: false })
     })
-  },
-
-  storeAccessToken(response) {
-    if (response.accessToken) {
-      xhr.post(`${window.location.origin}/admin/facebook/${response.accessToken}`, (err, res, body) => {
-        if (err) { console.log(err); return }
-        console.log(res)
-      })
-    } else {
-      console.log('facebook login failed!')
-    }
   },
 
   render() {
@@ -43,11 +31,6 @@ export default React.createClass({
     return <form method="post" encType="multipart/form-data" action={"/admin/config"} className="config-form">
              <div className="nested-field-container">{background_fields}</div>
              <Button theme="primary" rounded type="submit" className="config-submit">Save</Button>
-             <FacebookLogin
-               appId={config.facebook.app_id}
-               scope={config.facebook.scopes}
-               autoLoad={true}
-               callback={this.storeAccessToken} />
            </form>
   }
 })

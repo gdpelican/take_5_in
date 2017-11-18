@@ -31,7 +31,7 @@ class Config
   end
 
   def self.json
-    { backgrounds: instance.backgrounds }
+    { backgrounds: instance.backgrounds, facebook_app_id: ENV['FACEBOOK_APP_ID'] }
   end
 
   def self.instance
@@ -74,6 +74,10 @@ class Place
   property :story_3, String, length: 4000
   property :story_4, String, length: 4000
   property :story_5, String, length: 4000
+
+  def full_name
+    [self.name, self.subname].compact.join(', ')
+  end
 
   def json_for_photo(index)
     photo = send(:"photo_#{index}")

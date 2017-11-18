@@ -13,6 +13,7 @@ gem 'mini_magick'
 gem 'json'
 gem 'dotenv', git: 'https://github.com/bkeepers/dotenv.git' # ??
 gem 'puma'
+gem 'httparty'
 
 group :development, :test do
   gem 'byebug'

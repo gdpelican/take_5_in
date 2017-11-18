@@ -81,6 +81,8 @@ class Place
   property :story_4, String, length: 4000
   property :story_5, String, length: 4000
 
+  property :synced_with_facebook, Boolean, default: false
+
   def full_name
     [self.name, self.subname].compact.join(', ')
   end
@@ -102,7 +104,10 @@ class Place
       subname:    self.subname,
       coverUrl:   self.cover.url(:cover),
       coverThumb: self.cover.url(:thumb),
-      photos:     self.photos
+      photos:     self.photos,
+      synced: {
+        facebook: self.synced_with_facebook
+      }
     }
   end
 end

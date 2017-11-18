@@ -37,6 +37,8 @@ export default React.createClass({
                    <div className="place-form-field">
                      <Button theme="primary" rounded type="submit" className="place-submit">Save</Button>
                      <Space x={1} />
+                     <Button onClick={this.postToFacebook} theme="secondary" rounded disabled={place.synced.facebook}>Post to Facebook</Button>
+                     <Space x={1} />
                      <Button onClick={this.toggleForm} theme="secondary" rounded>Cancel</Button>
                    </div>
                  </form>
@@ -48,6 +50,13 @@ export default React.createClass({
              <div className="place-cover" style={style} />
              {contents}
            </li>
+  },
+
+  postToFacebook() {
+    xhr.post(`${window.location.origin}/admin/facebook/places/${this.props.place.id}`, (err, res, body) => {
+      if (err) { console.log(err); return }
+      this.props.place.synced.facebook = true
+    })
   },
 
   toggleForm(e) {

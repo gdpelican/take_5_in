@@ -24,6 +24,8 @@ module Integrations
     end
 
     def self.post!(place)
+      return if place.synced_with_facebook
+
       # create an album
       album_id = post("#{ENV['FACEBOOK_PAGE_ID']}/albums", {
         location: place.full_name,
@@ -40,6 +42,7 @@ module Integrations
           message: place.send(:"story_#{index}")
         }
       end
+      place.update(synced_with_facebook: true)
     end
 
     def self.get(path, params, field = nil)

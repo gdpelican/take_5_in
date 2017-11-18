@@ -18,7 +18,7 @@ module Integrations
     end
 
     def self.post!(place, token)
-      return if place.synced_with_facebook
+      return if place.synced_to_facebook
 
       page_token = get(ENV['FACEBOOK_PAGE_ID'], {
         fields: :access_token,
@@ -46,7 +46,7 @@ module Integrations
           access_token: page_token
         })
       end
-      place.update(synced_with_facebook: true)
+      place.update(synced_to_facebook: true)
     end
 
     def self.get(path, params, field = nil)

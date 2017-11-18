@@ -1,15 +1,16 @@
 import React           from 'react'
 import xhr             from 'xhr'
+import Loading         from '../common/loading'
 import FacebookLogin   from 'react-facebook-login'
 import { Input, Textarea, Button, Space } from 'rebass'
 
 export default React.createClass({
   getInitialState() {
-    return { visible: false }
+    return { visible: false, syncState: 'ready' }
   },
 
   render() {
-    let place = this.props.place || { photos: [] }
+    let place = this.props.place || { photos: [], facebook: {} }
     let config = this.props.config
     let style = place.id ? { backgroundImage: `url(${place.coverUrl})` } : {}
     var contents
@@ -27,12 +28,16 @@ export default React.createClass({
                </div>
       })
 
-      if (!place.facebook.synced) {
+      if (place.facebook.synced || this.state.syncState == 'complete') {
+        sync = <Button theme="secondary" disabled="disabled">Synced to Facebook!</Button>
+      } else if (this.state.syncState == 'loading') {
+        sync = <Loading />
+      } else if (this.state.syncState == 'ready'){
         sync = <FacebookLogin
-                 textButton="Sync with facebook"
-                 appId={place.facebook.app_id}
-                 scope={place.facebook.scopes}
-                 callback={this.syncToFacebook} />
+          textButton="Sync to facebook"
+          appId={place.facebook.app_id}
+          scope={place.facebook.scopes}
+          callback={this.syncToFacebook} />
       }
 
       contents = <form method="post" encType="multipart/form-data" action={"/admin/places/" + (place.id || "")} className="place-form">
@@ -66,8 +71,11 @@ export default React.createClass({
 
   syncToFacebook(response) {
     if (response.accessToken) {
-      xhr.post(`${window.location.origin}/admin/facebook/places/${this.props.place.id}/${response.accessToken}`, console.log)
-      this.setState({ syncedToFacebook: true })
+      this.setState({ syncState: 'loading' })
+      xhr.post(`${window.location.origin}/admin/facebook/places/${this.props.place.id}/${response.accessToken}`, (err) => {
+        if (err) { console.log(err) }
+        this.setState({ syncState: 'complete' })
+      })
     } else {
       console.log('facebook login failed!')
     }

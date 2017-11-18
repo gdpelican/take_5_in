@@ -21,10 +21,20 @@
   background: transparent;
 }
 
+.kep-login-facebook {
+  padding: 7px !important;
+}
+
 .place-form {
   display: block;
   padding: 15px;
   margin: 10px;
+}
+
+.place-form-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .place-photo-fields {

@@ -75,7 +75,7 @@ class Place
   property :story_4, String, length: 4000
   property :story_5, String, length: 4000
 
-  property :synced_with_facebook, Boolean, default: false
+  property :synced_to_facebook, Boolean, default: false
 
   def full_name
     [self.name, self.subname].compact.join(', ')
@@ -100,7 +100,7 @@ class Place
       coverThumb: self.cover.url(:thumb),
       photos:     self.photos,
       facebook: {
-        synced:   self.synced_with_facebook,
+        synced:   self.synced_to_facebook,
         app_id:   ENV['FACEBOOK_APP_ID'],
         scopes:   "publish_pages,manage_pages,user_photos,publish_actions"
       }

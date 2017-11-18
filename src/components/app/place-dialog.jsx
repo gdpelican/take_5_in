@@ -22,11 +22,16 @@ export default React.createClass({
   },
 
   componentDidUpdate() {
-    let $body = document.querySelector('body')
+    const $body    = document.querySelector('body')
     if (this.props.open) {
-      $body.style.overflow = 'hidden'
+      const $html    = document.querySelector('html')
+      const $app     = document.querySelector('#app')
+      const $content = document.querySelector('#content')
+
+      $body.style = { overflow: 'hidden' }
+      $html.style = $app.style = $content.style = {}
     } else {
-      $body.style.overflow = 'auto'
+      $body.style = {}
     }
   },
 

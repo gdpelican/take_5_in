@@ -19,7 +19,7 @@ Cuba.define do
   on('admin') { run Admin }
 
   on get, root do
-    if ENV['CUBA_ENV'] == 'production'
+    if ENV['RACK_ENV'] == 'production'
       res.write partial('index.production')
     else
       res.write partial('index')

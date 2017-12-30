@@ -80,6 +80,7 @@ task :deploy => :environment do
     invoke :'deploy:cleanup'
 
     to :launch do
+      queue "touch .env"
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
       invoke :'puma:hard_restart'

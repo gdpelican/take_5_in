@@ -314,9 +314,17 @@ html, body {
     width: 100%;
   }
 
-  .photo-preview-visible.minified {
-    top: -60px !important;
+  .minified .photo-preview-hidden {
+    height: calc(100vh - 194px);
+  }
+
+  .minified .photo-preview-visible {
+    top: -10px !important;
     left: 10px !important;
+  }
+
+  .minified .photo-preview-markdown {
+    margin-top: 60px;
   }
 
   .photo-preview-wrapper {
@@ -497,7 +505,7 @@ html, body {
   opacity: 0.5;
 }
 
-.photo-preview-visible.minified {
+.minified .photo-preview-visible {
   position: absolute;
   top: -15px;
   left: -50px;
@@ -506,6 +514,7 @@ html, body {
 }
 
 .photo-preview-hidden {
+  transition: height 0.35s ease-in-out;
   visibility: hidden;
   z-index: -2;
 }

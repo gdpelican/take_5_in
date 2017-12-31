@@ -88,8 +88,8 @@ export default React.createClass({
 
   preview() {
     let url = this.selectedImage().view
-    return <div key={url} className="photo-preview">
-             <img onClick={this.showImage} className={this.state.minified ? 'photo-preview-visible minified' : 'photo-preview-visible'} src={url} />
+    return <div key={url} className={this.state.minified ? 'photo-preview minified' : 'photo-preview'}>
+             <img onClick={this.showImage} className="photo-preview-visible" src={url} />
              <img className="photo-preview-hidden" src={url} />
              {this.selectedStoryIcon()}
              {this.selectedStory()}

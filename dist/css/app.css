@@ -300,11 +300,24 @@ html, body {
 
 @media screen and (min-device-width: 0px) and (max-device-width: 832px) {
   .header-badge .loading { margin: 25px auto 0; }
-  .preview-body .fa-question-circle,
-  .background-navigator .fa { font-size: 2.5em !important; margin: 0 10px; }
+  .preview-body .fa-question-circle { font-size: 2em !important; }
+  .background-navigator .fa { font-size: 1.5em !important; margin: 0 10px; }
   .currently-in { margin-bottom: 10px; }
-  .preview-header .fa-times { font-size: 1.75em; }
   .header-badge { margin-top: 10vh; }
+  .background-navigator .fa.adjacent { font-size: 2em !important; }
+  .angle-spacer, .fa-angle-right, .fa-angle-left { display: none; }
+
+  .preview-footer {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow: auto;
+    width: 100%;
+  }
+
+  .photo-preview-visible.minified {
+    top: -60px !important;
+    left: 10px !important;
+  }
 }
 
 @media screen and (min-device-width: 530px) {
@@ -336,7 +349,7 @@ html, body {
 .preview-overlay {
   position: fixed;
   top: 0; right: 0; bottom: 0; left: 0;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.75);
   z-index: 100;
   display: flex;
   flex-direction: column;
@@ -439,6 +452,7 @@ html, body {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  margin: auto;
 }
 
 .photo-preview-wrapper {
@@ -588,5 +602,5 @@ html, body {
 }
 
 .no-radius { border-radius: 0 !important; }
-.faded {  opacity: 0.3; }
+.faded {  opacity: 0.6; }
 .hidden { opacity: 0 !important; }

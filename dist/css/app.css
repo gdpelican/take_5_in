@@ -410,7 +410,7 @@ html, body {
 
 .preview-body .angle-spacer {
   margin: 0 20px;
-  width: 48px;
+  width: 24px;
 }
 
 .preview-body .fa.fa-angle-left,
@@ -436,10 +436,10 @@ html, body {
 
 .photo-preview {
   position: relative;
-  width: 100%;
   font-family: 'Ubuntu', sans-serif;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .photo-preview-wrapper {
@@ -469,7 +469,9 @@ html, body {
 .photo-preview-visible {
   min-width: 100%;
   width: 100px;
+  top: 0;
   transition: 0.25s ease-in all;
+  z-index: 1;
 }
 
 .photo-preview-visible.previous {
@@ -478,6 +480,7 @@ html, body {
 }
 
 .photo-preview-visible.minified {
+  position: absolute;
   top: -15px;
   left: -50px;
   min-width: 0;
@@ -485,7 +488,17 @@ html, body {
 }
 
 .photo-preview-hidden {
+  visibility: hidden;
+  z-index: -2;
+}
+
+.preview-overlay.loading .photo-preview-hidden {
   display: none;
+}
+
+.preview-overlay.loading .photo-preview-visible {
+  flex-grow: 1;
+  width: auto;
 }
 
 .preview-footer {

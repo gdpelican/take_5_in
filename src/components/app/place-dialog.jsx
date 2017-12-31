@@ -41,7 +41,7 @@ export default React.createClass({
   },
 
   loadingContent() {
-    return <div className="preview-overlay">
+    return <div className="preview-overlay loading">
               <div className="preview-header">
                 <div className="preview-title">{this.props.place.name}, {this.props.place.subname}</div>
                 <FontAwesome onClick={this.props.close} name="times" />
@@ -97,11 +97,11 @@ export default React.createClass({
   },
 
   select(index) {
-    return () => { this.setState({ previous: this.state.selected, selected: index }) }
+    return () => { this.setState({ minified: false, previous: this.state.selected, selected: index }) }
   },
 
   imageLoaded() {
-    this.setState({ minified: false, loaded: this.state.loaded.concat(this.state.selected) })
+    this.setState({ loaded: this.state.loaded.concat(this.state.selected) })
   },
 
   previousImage() {

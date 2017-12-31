@@ -6,10 +6,12 @@ import { Input, Textarea, Button, Space } from 'rebass'
 
 export default React.createClass({
   getInitialState() {
-    return { visible: false, syncState: 'ready' }
+    return { visible: false, deleted: false, syncState: 'ready' }
   },
 
   render() {
+    if (this.state.deleted) { return <div className="destroyed" /> }
+
     let place = this.props.place || { photos: [], facebook: {} }
     let config = this.props.config
     let style = place.id ? { backgroundImage: `url(${place.coverUrl})` } : {}
@@ -56,6 +58,8 @@ export default React.createClass({
                      <Space x={1} />
                      {sync}
                      <Space x={1} />
+                     <Button type="button" onClick={this.deletePlace} theme="warning" rounded>Destroy</Button>
+                     <Space x={1} />
                      <Button onClick={this.toggleForm} theme="secondary" rounded>Cancel</Button>
                    </div>
                  </form>
@@ -67,6 +71,17 @@ export default React.createClass({
              <div className="place-cover" style={style} />
              {contents}
            </li>
+  },
+
+  deletePlace(response) {
+    if (!confirm("Are you sure?")) { return }
+    xhr.del(`${window.location.origin}/admin/places/${this.props.place.id}`, (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        this.setState({ deleted: true })
+      }
+    })
   },
 
   syncToFacebook(response) {

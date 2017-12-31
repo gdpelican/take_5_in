@@ -228,6 +228,7 @@ html, body {
   cursor: pointer;
   position: absolute;
   bottom: 0;
+  width: 100%;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   letter-spacing: 0.08em;
   text-shadow: 0 0 5px black;
@@ -489,6 +490,8 @@ html, body {
   overflow-y: scroll;
   bottom: 4px;
   top: 4px;
+  left: 0;
+  right: 0;
   padding: 0 10px 5px 65px;
   width: 100%;
   box-sizing: border-box;

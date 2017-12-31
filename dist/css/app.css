@@ -42,6 +42,11 @@ html, body {
   background: #444 !important;
 }
 
+.bm-menu-wrap {
+  width: 375px !important;
+  max-width: 100% !important;
+}
+
 #wrap[style*='transform-style:'] {
   transform: translate3d(200px, 0px, -800px) rotateY(-20deg) !important;
 }
@@ -52,13 +57,24 @@ html, body {
 }
 
 .sidebar-content h2 {
-  margin: 0;
+  margin: 5px 0 0 0;
   font-family: 'Bad Script';
   font-size: 20px;
 }
 
+.sidebar-content .blurb-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sidebar-content img {
+  width: 40px;
+  border-radius: 100%;
+  margin-right: 15px;
+}
+
 .sidebar-content p {
-  margin: 0;
   font-family: 'Yanone Kaffeesatz';
   font-size: 17px;
   line-height: 22px;

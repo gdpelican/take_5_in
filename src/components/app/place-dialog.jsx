@@ -8,13 +8,18 @@ import { Text }        from 'rebass'
 
 export default React.createClass({
   getInitialState() {
-    return { selected: 0, loading: true, minified: false }
+    return {
+      selected: 0,
+      previous: null,
+      minified: false,
+      loaded: []
+    }
   },
 
   render() {
     if (!this.props.open) {
       return null
-    } else if (this.state.loading) {
+    } else if (this.state.loaded.indexOf(this.state.selected) == -1) {
       return this.loadingContent()
     } else {
       return this.displayContent()
@@ -37,11 +42,16 @@ export default React.createClass({
 
   loadingContent() {
     return <div className="preview-overlay">
-             <Loading />
-             <div className="hidden">
-               {this.previews()}
-               {this.thumbs()}
-             </div>
+              <div className="preview-header">
+                <div className="preview-title">{this.props.place.name}, {this.props.place.subname}</div>
+                <FontAwesome onClick={this.props.close} name="times" />
+              </div>
+              <div className="preview-body">{[
+                <div className="angle-spacer" key="prev" />,
+                this.loadingPreview(),
+                <div className="angle-spacer" key="next" />
+              ]}</div>
+             <div className="preview-footer">{this.thumbs()}</div>
            </div>
   },
 
@@ -56,10 +66,6 @@ export default React.createClass({
            </div>
   },
 
-  imageLoaded() {
-    this.setState({selected: 0, loading: false})
-  },
-
   prev() {
     if (this.state.selected == 0) { return <div className="angle-spacer" key="prev" /> }
     return <FontAwesome onClick={this.select(this.state.selected-1)} key="prev" name="angle-left" />
@@ -68,6 +74,16 @@ export default React.createClass({
   next() {
     if (this.state.selected == this.props.place.photos.length - 1) { return <div className="angle-spacer" key="next" /> }
     return <FontAwesome onClick={this.select(this.state.selected+1)} key="next" name="angle-right" />
+  },
+
+  loadingPreview() {
+    let previous = this.previousImage().view
+    let loading  = this.selectedImage().view
+    return <div key={loading} className="photo-preview">
+             <img className="photo-preview-hidden" src={loading} onLoad={this.imageLoaded} />
+             <img className="photo-preview-visible previous" src={previous} />
+             <Loading className="photo-preview--loading" />
+           </div>
   },
 
   preview() {
@@ -81,7 +97,15 @@ export default React.createClass({
   },
 
   select(index) {
-    return () => { this.setState({selected: index, minified: false}) }
+    return () => { this.setState({ previous: this.state.selected, selected: index }) }
+  },
+
+  imageLoaded() {
+    this.setState({ minified: false, loaded: this.state.loaded.concat(this.state.selected) })
+  },
+
+  previousImage() {
+    return this.props.place.photos[this.state.previous] || {}
   },
 
   selectedImage() {
@@ -107,16 +131,6 @@ export default React.createClass({
 
   showImage() {
     this.setState({ minified: false })
-  },
-
-  previews() {
-    return this.props.place.photos.map((urls, index) => {
-      if (index == 0) {
-        return <img onLoad={this.imageLoaded} src={urls.view} key={urls.view} />
-      } else {
-        return <img src={urls.view} key={urls.view} />
-      }
-    })
   },
 
   thumbs() {

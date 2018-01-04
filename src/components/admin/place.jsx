@@ -6,7 +6,7 @@ import { Input, Textarea, Button, Space } from 'rebass'
 
 export default React.createClass({
   getInitialState() {
-    return { visible: false, deleted: false, syncState: 'ready' }
+    return { visible: false, deleted: false, facebookSyncState: 'ready', scuttlebuttSyncState: 'ready' }
   },
 
   render() {
@@ -30,16 +30,26 @@ export default React.createClass({
                </div>
       })
 
-      if (place.facebook.synced || this.state.syncState == 'complete') {
-        sync = <Button theme="secondary" disabled="disabled">Synced to Facebook!</Button>
-      } else if (this.state.syncState == 'loading') {
-        sync = <Loading />
-      } else if (this.state.syncState == 'ready'){
-        sync = <FacebookLogin
+      var fbSync
+      if (place.facebook.synced || this.state.facebookSyncState == 'complete') {
+        fbSync = <Button theme="secondary" disabled="disabled">Synced to Facebook!</Button>
+      } else if (this.state.facebookSyncState == 'loading') {
+        fbSync = <Loading />
+      } else if (this.state.facebookSyncState == 'ready'){
+        fbSync = <FacebookLogin
           textButton="Sync to facebook"
           appId={place.facebook.app_id}
           scope={place.facebook.scopes}
           callback={this.syncToFacebook} />
+      }
+
+      var sbSync
+      if (place.scuttlebutt.synced || this.state.scuttlebuttSyncState == 'complete') {
+        sbSync = <Button theme="secondary" disabled="disabled">Synced to Scuttlebutt!</Button>
+      } else if (this.state.scuttlebuttSyncState == 'loading') {
+        sbSync = <Loading />
+      } else if (this.state.scuttlebuttSyncState == 'ready') {
+        sbSync = <Button theme="primary" type="button" onClick={this.syncToScuttlebutt}>Sync to Scuttlebutt</Button>
       }
 
       contents = <form method="post" encType="multipart/form-data" action={"/admin/places/" + (place.id || "")} className="place-form">
@@ -56,7 +66,9 @@ export default React.createClass({
                    <div className="place-form-field">
                      <Button theme="primary" rounded type="submit" className="place-submit">Save</Button>
                      <Space x={1} />
-                     {sync}
+                     {fbSync}
+                     <Space x={1} />
+                     {sbSync}
                      <Space x={1} />
                      <Button type="button" onClick={this.deletePlace} theme="warning" rounded>Destroy</Button>
                      <Space x={1} />
@@ -86,14 +98,25 @@ export default React.createClass({
 
   syncToFacebook(response) {
     if (response.accessToken) {
-      this.setState({ syncState: 'loading' })
+      this.setState({ facebookSyncState: 'loading' })
       xhr.post(`${window.location.origin}/admin/facebook/places/${this.props.place.id}/${response.accessToken}`, (err) => {
         if (err) { console.log(err) }
-        this.setState({ syncState: 'complete' })
+        this.setState({ facebookSyncState: 'complete' })
       })
     } else {
       console.log('facebook login failed!')
     }
+  },
+
+  syncToScuttlebutt() {
+    this.setState({ scuttlebuttSyncState: 'loading' })
+    xhr.post(`${window.location.origin}/admin/scuttlebutt/places/${this.props.place.id}`, (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        this.setState({ scuttlebuttSyncState: 'complete' })
+      }
+    })
   },
 
   toggleForm(e) {

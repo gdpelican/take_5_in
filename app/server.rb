@@ -2,6 +2,7 @@ require './app/initializers'
 require './app/models'
 
 require './app/integrations/facebook'
+require './app/integrations/scuttlebutt'
 
 require 'cuba'
 require 'cuba/render'
@@ -85,6 +86,12 @@ class Admin < Cuba
     # POST place to facebook
     on post, 'facebook/places/:id/:token' do |id, token|
       Integrations::Facebook.post! Place.get(id), token
+      res.write({ status: :ok }.to_json)
+    end
+
+    # POST place to scuttlebutt
+    on post, 'scuttlebutt/places/:id' do |id|
+      Integrations::Scuttlebutt.post! Place.get(id)
       res.write({ status: :ok }.to_json)
     end
   end

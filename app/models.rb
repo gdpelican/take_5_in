@@ -76,6 +76,7 @@ class Place
   property :story_5, String, length: 4000
 
   property :synced_to_facebook, Boolean, default: false
+  property :synced_to_scuttlebutt, Boolean, default: false
 
   def full_name
     [self.name, self.subname].compact.join(', ')
@@ -103,6 +104,9 @@ class Place
         synced:   self.synced_to_facebook,
         app_id:   ENV['FACEBOOK_APP_ID'],
         scopes:   "publish_pages,manage_pages,user_photos,publish_actions"
+      },
+      scuttlebutt: {
+        synced:   self.synced_to_scuttlebutt
       }
     }
   end

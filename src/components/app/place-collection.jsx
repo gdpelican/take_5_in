@@ -1,11 +1,16 @@
 import React   from 'react'
-import xhr from 'xhr'
+import xhr     from 'xhr'
 import Place   from './place'
 import Loading from '../common/loading'
+import query   from 'query-string'
 
 export default React.createClass({
   getInitialState() {
-    return { places: [], loading: true }
+    return {
+      places: [],
+      loading: true,
+      initialPlaceId: query.parse(location.search).placeId
+    }
   },
 
   componentDidMount(data) {
@@ -18,8 +23,9 @@ export default React.createClass({
   render() {
     if (this.state.loading) { return <Loading /> }
 
+    let initialPlaceId = this.state.initialPlaceId
     let places = this.state.places.map(function(place) {
-      return <Place key={place.id} place={place}></Place>
+      return <Place key={place.id} place={place} initialPlaceId={initialPlaceId}></Place>
     })
 
     if (places.length) {

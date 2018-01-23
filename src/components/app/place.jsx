@@ -6,7 +6,7 @@ import Loading                 from '../common/loading'
 
 export default React.createClass({
   getInitialState() {
-    return { loading: true, open: false }
+    return { loading: true, open: this.props.initialPlaceId == this.props.place.id }
   },
 
   render() {

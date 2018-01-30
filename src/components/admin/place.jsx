@@ -12,7 +12,7 @@ export default React.createClass({
   render() {
     if (this.state.deleted) { return <div className="destroyed" /> }
 
-    let place = this.props.place || { photos: [], facebook: {} }
+    let place = this.props.place || { photos: [], facebook: {}, scuttlebutt: {} }
     let config = this.props.config
     let style = place.id ? { backgroundImage: `url(${place.coverUrl})` } : {}
     var contents

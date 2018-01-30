@@ -57,8 +57,8 @@
     ]
   },
   "scripts": {
-    "app":   "watchify ./src/app.jsx -o ./dist/js/app.js --extension=jsx",
-    "admin": "watchify ./src/admin.jsx -o ./dist/js/admin.js --extension=jsx",
+    "app":   "browserify ./src/app.jsx -o ./dist/js/app.js --extension=jsx",
+    "admin": "browserify ./src/admin.jsx -o ./dist/js/admin.js --extension=jsx",
     "compile": "concurrently 'npm run app' 'npm run admin'",
     "js:production": "NODE_ENV=production browserify -p [minifyify --no-map] --full-paths --extension=jsx ./src/app.jsx   > ./dist/js/app.min.js",
     "css:production": "NODE_ENV=production node-sass ./dist/css/app.css ./dist/css/app.min.css --output-style compressed",

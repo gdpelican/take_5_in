@@ -444,8 +444,6 @@ html, body {
 .preview-body img {
   max-height: calc(100vh - 194px);
   height: auto;
-  width: auto;
-  margin-top: 5px;
   max-width: 100%;
   box-shadow: 0 0 5px 1px black;
   border-radius: 2px;

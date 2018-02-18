@@ -27,6 +27,14 @@ Cuba.define do
     end
   end
 
+  on get, 'place/:id' do
+    if ENV['RACK_ENV'] == 'production'
+      res.write partial('index.production')
+    else
+      res.write partial('index')
+    end
+  end
+
   on get, 'config' do
     res.headers[Rack::CONTENT_TYPE] = 'application/json'
     res.write Config.json.to_json

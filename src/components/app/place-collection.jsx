@@ -2,14 +2,14 @@ import React   from 'react'
 import xhr     from 'xhr'
 import Place   from './place'
 import Loading from '../common/loading'
-import query   from 'query-string'
+import placeId from '../common/placeId'
 
 export default React.createClass({
   getInitialState() {
     return {
       places: [],
       loading: true,
-      initialPlaceId: query.parse(location.search).placeId
+      initialPlaceId: placeId()
     }
   },
 

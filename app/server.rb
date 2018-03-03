@@ -7,32 +7,27 @@ require './app/integrations/scuttlebutt'
 require 'cuba'
 require 'cuba/render'
 require 'cuba/safe'
+require 'erb'
 require 'tilt/plain'
 
 Cuba.use Rack::Session::Cookie, secret: ENV['SECRET_TOKEN'] || 'notthatsecret'
 Cuba.use Rack::Static, urls: ['/dist/js', '/dist/css', '/dist/img']
 Cuba.plugin Cuba::Safe
 Cuba.plugin Cuba::Render
-Cuba.settings[:render][:template_engine] = "html"
+Cuba.settings[:render][:template_engine] = 'erb'
 Cuba.settings[:render][:views] = "./dist/html"
 
 Cuba.define do
   on('admin') { run Admin }
 
   on get, root do
-    if ENV['RACK_ENV'] == 'production'
-      res.write partial('index.production')
-    else
-      res.write partial('index')
-    end
+    template = ENV['RACK_ENV'] == 'production' ? 'index.production' : 'index'
+    res.write partial(template, meta_image_url: "https://i.imgur.com/1H6nYR1.jpg")
   end
 
-  on get, 'place/:id' do
-    if ENV['RACK_ENV'] == 'production'
-      res.write partial('index.production')
-    else
-      res.write partial('index')
-    end
+  on get, 'place/:id' do |id|
+    template = ENV['RACK_ENV'] == 'production' ? 'index.production' : 'index'
+    res.write partial(template, meta_image_url: Place.get(id).cover.url(:cover))
   end
 
   on get, 'config' do

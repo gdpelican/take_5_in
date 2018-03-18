@@ -22,12 +22,12 @@ Cuba.define do
 
   on get, root do
     template = ENV['RACK_ENV'] == 'production' ? 'index.production' : 'index'
-    res.write partial(template, meta_image_url: "https://i.imgur.com/1H6nYR1.jpg")
+    res.write partial(template, canonical_url: "https://take-five.in", meta_image_url: "https://i.imgur.com/1H6nYR1.jpg")
   end
 
   on get, 'place/:id' do |id|
     template = ENV['RACK_ENV'] == 'production' ? 'index.production' : 'index'
-    res.write partial(template, meta_image_url: Place.get(id).cover.url(:cover))
+    res.write partial(template, canonical_url: "https://take-five.in/place/#{id}", meta_image_url: Place.get(id).cover.url(:cover))
   end
 
   on get, 'config' do

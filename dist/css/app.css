@@ -512,7 +512,7 @@ html, body {
 
 .photo-preview-visible {
   min-width: 100%;
-  width: 100px;
+  width: auto;
   top: 0;
   transition: 0.25s ease-in all;
   z-index: 1;
@@ -525,15 +525,21 @@ html, body {
 
 .minified .photo-preview-visible {
   position: absolute;
+  max-width: 100px;
   top: -15px;
   left: -50px;
   min-width: 0;
   cursor: pointer;
 }
 
+.minified .photo-preview-hidden {
+  display: block;
+  visibility: hidden;
+}
+
 .photo-preview-hidden {
   transition: height 0.35s ease-in-out;
-  visibility: hidden;
+  display: none;
   z-index: -2;
 }
 

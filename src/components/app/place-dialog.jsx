@@ -113,16 +113,19 @@ export default React.createClass({
   },
 
   selectedStoryIcon() {
-    if (!this.selectedStory() || this.state.minified) { return }
+    if (!this.selectedStoryText() || this.state.minified) { return }
     return <FontAwesome key="info" onClick={this.showStory} name="question-circle" />
   },
 
   selectedStory() {
-    let story = (this.selectedImage() || {}).story
-    if (!story) { return null }
+    if (!this.selectedStoryText() || !this.state.minified) { return null }
     return <div className="photo-preview-wrapper">
-             <ReactMarkdown className="photo-preview-markdown" source={story} />
+             <ReactMarkdown className="photo-preview-markdown" source={this.selectedStoryText()} />
            </div>
+  },
+
+  selectedStoryText() {
+    return (this.selectedImage() || {}).story
   },
 
   showStory() {

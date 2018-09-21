@@ -315,7 +315,7 @@ html, body {
   box-shadow: 2px 2px 3px black;
 }
 
-@media screen and (min-device-width: 0px) and (max-device-width: 832px) {
+@media screen and (max-device-width: 767px) {
   .header-badge .loading { margin: 25px auto 0; }
   .preview-body .fa-question-circle { font-size: 2em !important; }
   .background-navigator .fa { font-size: 1.5em !important; margin: 0 10px; }
